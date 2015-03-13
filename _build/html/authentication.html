@@ -1,0 +1,205 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Authentication &mdash; Callback Staffing API 1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Callback Staffing API 1.0 documentation" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="index.html" class="fa fa-home"> Callback Staffing API</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="resources.html#v1-schedule"><code class="docutils literal"><span class="pre">/v1/schedule</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Callback Staffing API</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Authentication</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/authentication.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="authentication">
+<h1>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="receiving-an-access-token">
+<h2>Receiving an access token<a class="headerlink" href="#receiving-an-access-token" title="Permalink to this headline">¶</a></h2>
+<p>You use access tokens to authorize any requests made towards our API. To request an access token,
+issue a POST request to <code class="docutils literal"><span class="pre">https://callbackstaffing.com/api/oauth/access_token</span></code> like so:</p>
+<div class="section" id="curl">
+<h3>curl<a class="headerlink" href="#curl" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre>curl -v http://callbackstaffing.dev/api/oauth/access_token \
+     -d &quot;client_id=YOUR_CLIENT_ID&quot; \
+     -d &quot;client_secret=YOUR_SECRET_KEY&quot; \
+     -d &quot;grant_type=client_credentials&quot;
+</pre></div>
+</div>
+<p>Substitute your credentials for <code class="docutils literal"><span class="pre">YOUR_CLIENT_ID</span></code> and <code class="docutils literal"><span class="pre">YOUR_SECRET_KEY</span></code>.</p>
+<p>If the request is successful and you credentials are correct, you should receive a JSON string like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+    <span class="s">&quot;access_token&quot;</span><span class="p">:</span> <span class="s">&quot;DZs3IeaMP5uEAc2I19kJYl8Tbvsmgq9GaPQPaMjN&quot;</span><span class="p">,</span>
+    <span class="s">&quot;token_type&quot;</span><span class="p">:</span> <span class="s">&quot;bearer&quot;</span><span class="p">,</span>
+    <span class="s">&quot;expires&quot;</span><span class="p">:</span> <span class="mi">1426274440</span><span class="p">,</span>
+    <span class="s">&quot;expires_in&quot;</span><span class="p">:</span> <span class="mi">3600</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">token_type</span></code> signifies that you have to use HTTP headers to authorize requests (see the next section).
+<code class="docutils literal"><span class="pre">expires</span></code> is a UNIX timestamp of the expiration date of the token (after which you have to request a new one). <code class="docutils literal"><span class="pre">expires_in</span></code> shows the expiration length in seconds.</p>
+</div>
+</div>
+<div class="section" id="authorizing-requests">
+<h2>Authorizing requests<a class="headerlink" href="#authorizing-requests" title="Permalink to this headline">¶</a></h2>
+<p>To access protected resources in the API, you have to sign the HTTP requests with an <code class="docutils literal"><span class="pre">Authorization</span></code> header, using the <code class="docutils literal"><span class="pre">access_token</span></code> acquired in the previous step:</p>
+<div class="highlight-python"><div class="highlight"><pre>Authorization: Bearer DZs3IeaMP5uEAc2I19kJYl8Tbvsmgq9GaPQPaMjN
+</pre></div>
+</div>
+<div class="section" id="curl-example">
+<h3>curl example<a class="headerlink" href="#curl-example" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre>curl -v http://callbackstaffing.dev/api/v1/schedule \
+     -H &quot;Authorization: Bearer DZs3IeaMP5uEAc2I19kJYl8Tbvsmgq9GaPQPaMjN&quot;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Oliver Nagy.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
