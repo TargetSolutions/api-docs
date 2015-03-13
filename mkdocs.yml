@@ -1,0 +1,6 @@
+site_name: Callback Staffing API
+theme: readthedocs
+
+pages:
+- [index.md, Home]
+- [authentication.md, Authentication]
