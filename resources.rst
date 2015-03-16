@@ -67,7 +67,7 @@ This array contains the assignments of the day. An assignment looks like this::
 
 Let's refer to one of these object as an ``asssignment``.
 
-``day.asssignment.shifts``
+``day.assignment.shifts``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This array holds data about the employees scheduled for the assignment on the given day. An object of this array is formatted 
