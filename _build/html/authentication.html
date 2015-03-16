@@ -30,7 +30,9 @@
   
 
   
-    <link rel="top" title="Callback Staffing API 1.0 documentation" href="index.html"/> 
+    <link rel="top" title="Callback Staffing API 1.0 documentation" href="index.html"/>
+        <link rel="next" title="Resources" href="resources.html"/>
+        <link rel="prev" title="Welcome to Callback Staffing API documentation!" href="index.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -61,7 +63,12 @@
         
           
           
-              <ul>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Authentication</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#receiving-an-access-token">Receiving an access token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authorizing-requests">Authorizing requests</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="resources.html#v1-schedule"><code class="docutils literal"><span class="pre">/v1/schedule</span></code></a></li>
 </ul>
@@ -109,7 +116,7 @@
 issue a POST request to <code class="docutils literal"><span class="pre">https://callbackstaffing.com/api/oauth/access_token</span></code> like so:</p>
 <div class="section" id="curl">
 <h3>curl<a class="headerlink" href="#curl" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre>curl -v http://callbackstaffing.dev/api/oauth/access_token \
+<div class="highlight-python"><div class="highlight"><pre>curl -v https://callbackstaffing.com/api/oauth/access_token \
      -d &quot;client_id=YOUR_CLIENT_ID&quot; \
      -d &quot;client_secret=YOUR_SECRET_KEY&quot; \
      -d &quot;grant_type=client_credentials&quot;
@@ -137,7 +144,7 @@ issue a POST request to <code class="docutils literal"><span class="pre">https:/
 </div>
 <div class="section" id="curl-example">
 <h3>curl example<a class="headerlink" href="#curl-example" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre>curl -v http://callbackstaffing.dev/api/v1/schedule \
+<div class="highlight-python"><div class="highlight"><pre>curl -v https://callbackstaffing.com/api/v1/schedule \
      -H &quot;Authorization: Bearer DZs3IeaMP5uEAc2I19kJYl8Tbvsmgq9GaPQPaMjN&quot;
 </pre></div>
 </div>
@@ -148,6 +155,15 @@ issue a POST request to <code class="docutils literal"><span class="pre">https:/
 
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="resources.html" class="btn btn-neutral float-right" title="Resources">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to Callback Staffing API documentation!"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

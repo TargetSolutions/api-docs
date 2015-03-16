@@ -11,7 +11,7 @@ curl
 ^^^^
 ::
 
-   curl -v http://callbackstaffing.dev/api/oauth/access_token \
+   curl -v https://callbackstaffing.com/api/oauth/access_token \
         -d "client_id=YOUR_CLIENT_ID" \
         -d "client_secret=YOUR_SECRET_KEY" \
         -d "grant_type=client_credentials"
@@ -41,5 +41,5 @@ curl example
 ^^^^^^^^^^^^
 ::
 
-   curl -v http://callbackstaffing.dev/api/v1/schedule \
+   curl -v https://callbackstaffing.com/api/v1/schedule \
         -H "Authorization: Bearer DZs3IeaMP5uEAc2I19kJYl8Tbvsmgq9GaPQPaMjN"

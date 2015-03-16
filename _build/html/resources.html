@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="Callback Staffing API 1.0 documentation" href="index.html"/>
-        <link rel="prev" title="Authorization" href="authorization.html"/> 
+        <link rel="prev" title="Authentication" href="authentication.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -63,17 +63,13 @@
           
           
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="authorization.html#receiving-an-access-token">Receiving an access token</a></li>
-<li class="toctree-l2"><a class="reference internal" href="authorization.html#examples">Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="authorization.html#client-credentials">Client Credentials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="authorization.html#grant-types">Grant Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="authorization.html#the-password-grant">1. The Password Grant</a></li>
-<li class="toctree-l2"><a class="reference internal" href="authorization.html#id1">2. Client Credentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#receiving-an-access-token">Receiving an access token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#authorizing-requests">Authorizing requests</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Resources</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#v1-schedule"><code class="docutils literal"><span class="pre">/v1/schedule</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#schedule"><code class="docutils literal"><span class="pre">/schedule</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -113,8 +109,8 @@
             
   <div class="section" id="resources">
 <h1>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="v1-schedule">
-<h2><code class="docutils literal"><span class="pre">/v1/schedule</span></code><a class="headerlink" href="#v1-schedule" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="schedule">
+<h2><code class="docutils literal"><span class="pre">/schedule</span></code><a class="headerlink" href="#schedule" title="Permalink to this headline">¶</a></h2>
 <p>The schedule consists of <em>shifts</em>, <em>time offs</em>, <em>callbacks</em>, <em>trades</em>, <em>misc. hours</em> and <em>group events</em>.
 They are wrapped by a top-level object containing metadata about the requested schedule (start date, end date, links for the next and previous period).</p>
 <p>An example of returned schedule data looks like this:</p>
@@ -122,8 +118,22 @@ They are wrapped by a top-level object containing metadata about the requested s
    <span class="s">&quot;start&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-15 08:00:00&quot;</span><span class="p">,</span>
    <span class="s">&quot;end&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-22 08:00:00&quot;</span><span class="p">,</span>
 
-   <span class="s">&quot;shifts&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="o">...</span> <span class="n">shift</span> <span class="n">data</span> <span class="o">...</span>
+   <span class="s">&quot;days&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+         <span class="s">&quot;date&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-15&quot;</span><span class="p">,</span>
+         <span class="s">&quot;assignments&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+               <span class="s">&quot;shifts&quot;</span><span class="p">:</span> <span class="p">[</span>
+                  <span class="o">...</span> <span class="n">shift</span> <span class="n">data</span> <span class="o">...</span>
+               <span class="p">],</span>
+            <span class="p">}</span>
+         <span class="p">],</span>
+         <span class="s">&quot;time_off&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+               <span class="o">...</span> <span class="n">time</span> <span class="n">off</span> <span class="n">data</span> <span class="o">...</span>
+            <span class="p">}</span>
+         <span class="p">]</span>
+      <span class="p">}</span>
    <span class="p">],</span>
 
    <span class="s">&quot;prev&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -135,6 +145,103 @@ They are wrapped by a top-level object containing metadata about the requested s
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>In the following sections, we try to introduce all the important data in the <code class="docutils literal"><span class="pre">schedule</span></code> resource.</p>
+<div class="section" id="days">
+<h3><code class="docutils literal"><span class="pre">days</span></code><a class="headerlink" href="#days" title="Permalink to this headline">¶</a></h3>
+<p>This array contains all days occurring between the start and end date requested. Each object in the array contains the <code class="docutils literal"><span class="pre">date</span></code>
+key, and arrays of objects occurring that day. For the following sections, we refer to one object in this array as a <code class="docutils literal"><span class="pre">day</span></code>.</p>
+</div>
+<div class="section" id="day-assignments">
+<h3><code class="docutils literal"><span class="pre">day.assignments</span></code><a class="headerlink" href="#day-assignments" title="Permalink to this headline">¶</a></h3>
+<p>This array contains the assignments of the day. An assignment looks like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+   <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1234</span><span class="p">,</span>
+   <span class="s">&quot;date&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-15&quot;</span><span class="p">,</span>
+   <span class="s">&quot;start&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-15 08:00:00&quot;</span><span class="p">,</span>
+   <span class="s">&quot;end&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-16 08:00:00&quot;</span><span class="p">,</span>
+   <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;Station 1&quot;</span><span class="p">,</span>
+   <span class="s">&quot;positions_to_fill&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+   <span class="s">&quot;recurring&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+   <span class="s">&quot;shifts&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="o">...</span> <span class="n">see</span> <span class="nb">next</span> <span class="n">section</span> <span class="o">...</span>
+   <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Let&#8217;s refer to one of these object as an <code class="docutils literal"><span class="pre">asssignment</span></code>.</p>
+</div>
+<div class="section" id="day-asssignment-shifts">
+<h3><code class="docutils literal"><span class="pre">day.asssignment.shifts</span></code><a class="headerlink" href="#day-asssignment-shifts" title="Permalink to this headline">¶</a></h3>
+<p>This array holds data about the employees scheduled for the assignment on the given day. An object of this array is formatted
+like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+   <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">456789</span><span class="p">,</span>
+   <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/shift/456789&quot;</span><span class="p">,</span>
+   <span class="s">&quot;start&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-15 08:00:00&quot;</span><span class="p">,</span>
+   <span class="s">&quot;end&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-16 08:00:00&quot;</span><span class="p">,</span>
+   <span class="s">&quot;hold_over&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+   <span class="s">&quot;recurring&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+   <span class="s">&quot;recurrence_start&quot;</span><span class="p">:</span> <span class="s">&quot;2014-12-11&quot;</span><span class="p">,</span>
+   <span class="s">&quot;user&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">848</span><span class="p">,</span>
+      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/user/848&quot;</span><span class="p">,</span>
+      <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;John Doe&quot;</span>
+   <span class="p">},</span>
+   <span class="s">&quot;admin&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">138</span><span class="p">,</span>
+      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/user/138&quot;</span><span class="p">,</span>
+      <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;Joe Boss&quot;</span>
+   <span class="p">},</span>
+   <span class="s">&quot;work_type&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">33</span><span class="p">,</span>
+      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/work_type/33&quot;</span><span class="p">,</span>
+      <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;Regular Time&quot;</span><span class="p">,</span>
+      <span class="s">&quot;work_code&quot;</span><span class="p">:</span> <span class="s">&quot;REG001&quot;</span>
+   <span class="p">},</span>
+   <span class="s">&quot;labels&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+         <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+         <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/label/12&quot;</span><span class="p">,</span>
+         <span class="s">&quot;label&quot;</span><span class="p">:</span> <span class="s">&quot;ENG&quot;</span>
+      <span class="p">}</span>
+   <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>You will notice that some of the included objects have <code class="docutils literal"><span class="pre">href</span></code> properties. This is because we are only returning a sensible
+subset of the available data about these objects. If you make a <code class="docutils literal"><span class="pre">GET</span></code> request to the provided URL, you can retrieve all of
+the available information about them. &#64;TODO See <code class="docutils literal"><span class="pre">/user</span></code>, <code class="docutils literal"><span class="pre">/work_type</span></code> and <code class="docutils literal"><span class="pre">/label</span></code> for details.</p>
+</div>
+<div class="section" id="day-time-off">
+<h3><code class="docutils literal"><span class="pre">day.time_off</span></code><a class="headerlink" href="#day-time-off" title="Permalink to this headline">¶</a></h3>
+<p>All approved time off for the day is in this array, including long term and recurring leave that has an occurrence fall on this
+day. The general structure of one object in the array:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+   <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">623492</span><span class="p">,</span>
+   <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/time_off/623492&quot;</span><span class="p">,</span>
+   <span class="s">&quot;start&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-15 08:00:00&quot;</span><span class="p">,</span>
+   <span class="s">&quot;end&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-16 08:00:00&quot;</span><span class="p">,</span>
+   <span class="s">&quot;recurring&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+   <span class="s">&quot;user&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">848</span><span class="p">,</span>
+      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/user/848&quot;</span><span class="p">,</span>
+      <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;John Doe&quot;</span>
+   <span class="p">},</span>
+   <span class="s">&quot;admin&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">138</span><span class="p">,</span>
+      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/user/138&quot;</span><span class="p">,</span>
+      <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;Joe Boss&quot;</span>
+   <span class="p">},</span>
+   <span class="s">&quot;time_off_type&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span>
+      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/time_off_type/45&quot;</span><span class="p">,</span>
+      <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;Sick Leave&quot;</span><span class="p">,</span>
+      <span class="s">&quot;work_code&quot;</span><span class="p">:</span> <span class="s">&quot;SL&quot;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
@@ -145,7 +252,7 @@ They are wrapped by a top-level object containing metadata about the requested s
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="authorization.html" class="btn btn-neutral" title="Authorization"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="authentication.html" class="btn btn-neutral" title="Authentication"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
