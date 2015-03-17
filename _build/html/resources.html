@@ -132,6 +132,21 @@ They are wrapped by a top-level object containing metadata about the requested s
             <span class="p">{</span>
                <span class="o">...</span> <span class="n">time</span> <span class="n">off</span> <span class="n">data</span> <span class="o">...</span>
             <span class="p">}</span>
+         <span class="p">],</span>
+         <span class="s">&quot;callbacks&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+               <span class="o">...</span> <span class="n">callback</span> <span class="n">data</span> <span class="o">...</span>
+            <span class="p">}</span>
+         <span class="p">],</span>
+         <span class="s">&quot;trades&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+               <span class="o">...</span> <span class="n">trade</span> <span class="n">data</span> <span class="o">...</span>
+            <span class="p">}</span>
+         <span class="p">],</span>
+         <span class="s">&quot;misc&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+               <span class="o">...</span> <span class="n">misc</span><span class="o">.</span> <span class="n">hours</span> <span class="n">data</span> <span class="o">...</span>
+            <span class="p">}</span>
          <span class="p">]</span>
       <span class="p">}</span>
    <span class="p">],</span>
@@ -170,8 +185,8 @@ key, and arrays of objects occurring that day. For the following sections, we re
 </div>
 <p>Let&#8217;s refer to one of these object as an <code class="docutils literal"><span class="pre">asssignment</span></code>.</p>
 </div>
-<div class="section" id="day-asssignment-shifts">
-<h3><code class="docutils literal"><span class="pre">day.asssignment.shifts</span></code><a class="headerlink" href="#day-asssignment-shifts" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="day-assignment-shifts">
+<h3><code class="docutils literal"><span class="pre">day.assignment.shifts</span></code><a class="headerlink" href="#day-assignment-shifts" title="Permalink to this headline">¶</a></h3>
 <p>This array holds data about the employees scheduled for the assignment on the given day. An object of this array is formatted
 like this:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
@@ -241,6 +256,63 @@ day. The general structure of one object in the array:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="day-callbacks">
+<h3><code class="docutils literal"><span class="pre">day.callbacks</span></code><a class="headerlink" href="#day-callbacks" title="Permalink to this headline">¶</a></h3>
+<p>In this array you will find all finalized callbacks for the day. Callback shifts that were drag &amp; dropped to a work assignment
+will not be included, they are under <code class="docutils literal"><span class="pre">day.assignment.shifts</span></code>. A <code class="docutils literal"><span class="pre">callback</span></code> object is structured like this:</p>
+<div class="highlight-python"><div class="highlight"><pre>{
+   &quot;id&quot;: 64012,
+   &quot;href&quot;: &quot;https://callbackstaffing.com/api/v1/callback/64012&quot;,
+   &quot;start&quot;: &quot;2015-03-15 08:00:00&quot;,
+   &quot;end&quot;: &quot;2015-03-16 08:00:00&quot;,
+   &quot;positions_to_fill&quot;: 1,
+   &quot;records&quot;: [
+      {
+         &quot;id&quot;: 2165743,
+         &quot;user&quot;: {
+            &quot;id&quot;: 848,
+            &quot;href&quot;: &quot;https://callbackstaffing.com/api/v1/user/848&quot;,
+            &quot;name&quot;: &quot;John Doe&quot;
+         },
+         &quot;start&quot;: &quot;2015-03-15 08:00:00&quot;,
+         &quot;end&quot;: &quot;2015-03-16 08:00:00&quot;,
+         &quot;work_site&quot;: null
+      }
+   ]
+   &quot;title&quot;: {
+      &quot;id&quot;: 112,
+      &quot;href&quot;: &quot;https://callbackstaffing.com/api/v1/title/112&quot;,
+      &quot;name&quot;: &quot;Firefighter&quot;
+   }
+}
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">records</span></code> gives you all accepting employees of the callback. You can request more data about certain pieces of the callback
+using the <code class="docutils literal"><span class="pre">href</span></code> links provided.</p>
+</div>
+<div class="section" id="day-trades">
+<h3><code class="docutils literal"><span class="pre">day.trades</span></code><a class="headerlink" href="#day-trades" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">trades</span></code> contains all accepted and finalized shift trades for the day. A trade object in the array looks like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+   <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">4355</span><span class="p">,</span>
+   <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/trade/4355&quot;</span><span class="p">,</span>
+   <span class="s">&quot;start&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-15 08:00:00&quot;</span><span class="p">,</span>
+   <span class="s">&quot;end&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-16 08:00:00&quot;</span><span class="p">,</span>
+   <span class="s">&quot;requesting_user&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">848</span><span class="p">,</span>
+      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/user/848&quot;</span><span class="p">,</span>
+      <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;John Doe&quot;</span>
+   <span class="p">},</span>
+   <span class="s">&quot;accepting_user&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">138</span><span class="p">,</span>
+      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/user/138&quot;</span><span class="p">,</span>
+      <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;Jack Smith&quot;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Follow the top-level <code class="docutils literal"><span class="pre">href</span></code> link to receive all information about the trade.</p>
 </div>
 </div>
 </div>

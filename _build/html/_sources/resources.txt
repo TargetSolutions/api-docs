@@ -27,6 +27,21 @@ An example of returned schedule data looks like this::
                {
                   ... time off data ...
                }
+            ],
+            "callbacks": [
+               {
+                  ... callback data ...
+               }
+            ],
+            "trades": [
+               {
+                  ... trade data ...
+               }
+            ],
+            "misc": [
+               {
+                  ... misc. hours data ...
+               }
             ]
          }
       ],
@@ -67,7 +82,7 @@ This array contains the assignments of the day. An assignment looks like this::
 
 Let's refer to one of these object as an ``asssignment``.
 
-``day.asssignment.shifts``
+``day.assignment.shifts``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This array holds data about the employees scheduled for the assignment on the given day. An object of this array is formatted 
@@ -139,3 +154,62 @@ day. The general structure of one object in the array::
          "work_code": "SL"
       }
    }
+
+``day.callbacks``
+^^^^^^^^^^^^^^^^
+
+In this array you will find all finalized callbacks for the day. Callback shifts that were drag & dropped to a work assignment 
+will not be included, they are under ``day.assignment.shifts``. A ``callback`` object is structured like this::
+
+   {
+      "id": 64012,
+      "href": "https://callbackstaffing.com/api/v1/callback/64012",
+      "start": "2015-03-15 08:00:00",
+      "end": "2015-03-16 08:00:00",
+      "positions_to_fill": 1,
+      "records": [
+         {
+            "id": 2165743,
+            "user": {
+               "id": 848,
+               "href": "https://callbackstaffing.com/api/v1/user/848",
+               "name": "John Doe"
+            },
+            "start": "2015-03-15 08:00:00",
+            "end": "2015-03-16 08:00:00",
+            "work_site": null
+         }
+      ]
+      "title": {
+         "id": 112,
+         "href": "https://callbackstaffing.com/api/v1/title/112",
+         "name": "Firefighter"
+      }
+   }
+
+``records`` gives you all accepting employees of the callback. You can request more data about certain pieces of the callback 
+using the ``href`` links provided.
+
+``day.trades``
+^^^^^^^^^^^^^^^^
+
+``trades`` contains all accepted and finalized shift trades for the day. A trade object in the array looks like this::
+
+   {
+      "id": 4355,
+      "href": "https://callbackstaffing.com/api/v1/trade/4355",
+      "start": "2015-03-15 08:00:00",
+      "end": "2015-03-16 08:00:00",
+      "requesting_user": {
+         "id": 848,
+         "href": "https://callbackstaffing.com/api/v1/user/848",
+         "name": "John Doe"
+      },
+      "accepting_user": {
+         "id": 138,
+         "href": "https://callbackstaffing.com/api/v1/user/138",
+         "name": "Jack Smith"
+      }
+   }
+
+Follow the top-level ``href`` link to receive all information about the trade.
