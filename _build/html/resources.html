@@ -63,13 +63,24 @@
           
           
               <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Welcome</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#contents">Contents</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="authentication.html#receiving-an-access-token">Receiving an access token</a></li>
 <li class="toctree-l2"><a class="reference internal" href="authentication.html#authorizing-requests">Authorizing requests</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#conventions">Conventions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#schedule"><code class="docutils literal"><span class="pre">/schedule</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#users"><code class="docutils literal"><span class="pre">/users</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#work-types"><code class="docutils literal"><span class="pre">/work_types</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#time-off-types"><code class="docutils literal"><span class="pre">/time_off_types</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#labels"><code class="docutils literal"><span class="pre">/labels</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#callback-records"><code class="docutils literal"><span class="pre">/callback_records</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#titles"><code class="docutils literal"><span class="pre">/titles</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -109,9 +120,23 @@
             
   <div class="section" id="resources">
 <h1>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="conventions">
+<h2>Conventions<a class="headerlink" href="#conventions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="date-time">
+<h3>Date / Time<a class="headerlink" href="#date-time" title="Permalink to this headline">¶</a></h3>
+<p>We use a simplified version of the ISO 8601 standard. Dates are represented in the <code class="docutils literal"><span class="pre">YYYY-MM-DD</span></code>
+format. Most dates with timestamps follow the <code class="docutils literal"><span class="pre">YYYY-MM-DD</span> <span class="pre">hh:mm:ss</span></code> format (e.g. &#8220;2015-03-15 19:33:59&#8221;),
+where the timestamp is &#8220;timezoneless&#8221;, it is implied to be in your organization&#8217;s timezone
+(or the timezone is irrelevant).</p>
+<p>For a few timestamp type data fields, we use the (still ISO 8601 standard) <code class="docutils literal"><span class="pre">YYYY-MM-DDThh:mm:ss+00:00</span></code>
+format (example: &#8220;2015-03-21T19:45:33-06:00&#8221;). This is used for fields like contact time, response time,
+creation date etc., where the timezone may be important (due to daylight savings time for example).</p>
+<p class="rubric">Endpoints</p>
+</div>
+</div>
 <div class="section" id="schedule">
 <h2><code class="docutils literal"><span class="pre">/schedule</span></code><a class="headerlink" href="#schedule" title="Permalink to this headline">¶</a></h2>
-<p>The schedule consists of <em>shifts</em>, <em>time offs</em>, <em>callbacks</em>, <em>trades</em>, <em>misc. hours</em> and <em>group events</em>.
+<p>The schedule consists of <em>shifts</em>, <em>time offs</em>, <em>callbacks</em>, <em>trades</em> and <em>misc. hours</em>.
 They are wrapped by a top-level object containing metadata about the requested schedule (start date, end date, links for the next and previous period).</p>
 <p>This endpoint has two required parameters:</p>
 <table border="1" class="docutils">
@@ -130,12 +155,12 @@ They are wrapped by a top-level object containing metadata about the requested s
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">start</span></code></td>
 <td>The date
 you need the data from</td>
-<td>2015-03-15 08:00:00</td>
+<td>datetime</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">end</span></code></td>
 <td>The date
 you need the data to</td>
-<td>2015-03-15 08:00:00</td>
+<td>datetime</td>
 </tr>
 </tbody>
 </table>
@@ -215,7 +240,56 @@ key, and arrays of objects occurring that day. For the following sections, we re
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Let&#8217;s refer to one of these object as an <code class="docutils literal"><span class="pre">asssignment</span></code>.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="39%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Description</th>
+<th class="head">Type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">id</span></code></td>
+<td>Unique identifier of the
+assignment</td>
+<td>integer</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">href</span></code></td>
+<td>Link to full object</td>
+<td>string (URL)</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">date</span></code></td>
+<td>The day the assignment
+starts on</td>
+<td>date</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">start</span></code></td>
+<td>Start date of assignment</td>
+<td>datetime</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">end</span></code></td>
+<td>End date of assignment</td>
+<td>datetime</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">name</span></code></td>
+<td>Title of assignment</td>
+<td>string</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">positions_to_fill</span></code></td>
+<td>Employees needed</td>
+<td>integer</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">shifts</span></code></td>
+<td>Employees working the
+assignment</td>
+<td>array</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="day-assignment-shifts">
 <h3><code class="docutils literal"><span class="pre">day.assignment.shifts</span></code><a class="headerlink" href="#day-assignment-shifts" title="Permalink to this headline">¶</a></h3>
@@ -254,9 +328,74 @@ like this:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="39%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Description</th>
+<th class="head">Type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">id</span></code></td>
+<td>Unique identifier of the
+work shift</td>
+<td>integer</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">href</span></code></td>
+<td>Link to full object</td>
+<td>string (URL)</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">start</span></code></td>
+<td>Start date of shift</td>
+<td>datetime</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">end</span></code></td>
+<td>End date of shift</td>
+<td>datetime</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">hold_over</span></code></td>
+<td>Additional OT hours</td>
+<td>datetime</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">recurring</span></code></td>
+<td>Is it a regularly
+occurring shift?</td>
+<td>boolean</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">user</span></code></td>
+<td>Employee working the
+shift</td>
+<td>See
+<a class="reference internal" href="#section-users"><span>/users</span></a></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">admin</span></code></td>
+<td>Admin who assigned the
+shift</td>
+<td>See
+<a class="reference internal" href="#section-users"><span>/users</span></a></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">work_type</span></code></td>
+<td>Type of work
+shift</td>
+<td>See
+<a class="reference internal" href="#section-wt"><span>/work_types</span></a></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">labels</span></code></td>
+<td>Applied Crew Scheduler
+labels</td>
+<td>array; see
+<a class="reference internal" href="#section-label"><span>/labels</span></a></td>
+</tr>
+</tbody>
+</table>
 <p>You will notice that some of the included objects have <code class="docutils literal"><span class="pre">href</span></code> properties. This is because we are only returning a sensible
 subset of the available data about these objects. If you make a <code class="docutils literal"><span class="pre">GET</span></code> request to the provided URL, you can retrieve all of
-the available information about them. &#64;TODO See <code class="docutils literal"><span class="pre">/user</span></code>, <code class="docutils literal"><span class="pre">/work_type</span></code> and <code class="docutils literal"><span class="pre">/label</span></code> for details.</p>
+the available information about them.</p>
 </div>
 <div class="section" id="day-time-off">
 <h3><code class="docutils literal"><span class="pre">day.time_off</span></code><a class="headerlink" href="#day-time-off" title="Permalink to this headline">¶</a></h3>
@@ -285,6 +424,55 @@ day. The general structure of one object in the array:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="39%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Description</th>
+<th class="head">Type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">id</span></code></td>
+<td>Unique identifier of the
+time off</td>
+<td>integer</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">href</span></code></td>
+<td>Link to full object</td>
+<td>string (URL)</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">start</span></code></td>
+<td>Start date of time off</td>
+<td>datetime</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">end</span></code></td>
+<td>End date of time off</td>
+<td>datetime</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">user</span></code></td>
+<td>Employee on leave</td>
+<td>See
+<a class="reference internal" href="#section-users"><span>/users</span></a></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">admin</span></code></td>
+<td>Admin who approved the
+time off</td>
+<td>See
+<a class="reference internal" href="#section-users"><span>/users</span></a></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">time_off_type</span></code></td>
+<td>Type of time off
+shift</td>
+<td>See
+<a class="reference internal" href="#section-tot"><span>/time_off_types</span></a></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="day-callbacks">
 <h3><code class="docutils literal"><span class="pre">day.callbacks</span></code><a class="headerlink" href="#day-callbacks" title="Permalink to this headline">¶</a></h3>
@@ -317,8 +505,60 @@ will not be included, they are under <code class="docutils literal"><span class=
 }
 </pre></div>
 </div>
-<p><code class="docutils literal"><span class="pre">records</span></code> gives you all accepting employees of the callback. You can request more data about certain pieces of the callback
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="39%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Description</th>
+<th class="head">Type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">id</span></code></td>
+<td>Unique identifier of the
+time off</td>
+<td>integer</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">href</span></code></td>
+<td>Link to full object</td>
+<td>string (URL)</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">start</span></code></td>
+<td>Start date of the
+callback shift</td>
+<td>datetime</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">end</span></code></td>
+<td>End date of the
+callback shift</td>
+<td>datetime</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">positions_to_fill</span></code></td>
+<td>Employees needed</td>
+<td>integer</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">records</span></code></td>
+<td>Accepting employees</td>
+<td>array; see
+<a class="reference internal" href="#section-cbr"><span>/callback_records</span></a></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">title</span></code></td>
+<td>Employee type needed
+time off</td>
+<td>See
+<a class="reference internal" href="#section-title"><span>/titles</span></a></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><code class="docutils literal"><span class="pre">records</span></code> gives you all accepting employees of the callback. You can request more data about certain pieces of the callback
 using the <code class="docutils literal"><span class="pre">href</span></code> links provided.</p>
+</div>
 </div>
 <div class="section" id="day-trades">
 <h3><code class="docutils literal"><span class="pre">day.trades</span></code><a class="headerlink" href="#day-trades" title="Permalink to this headline">¶</a></h3>
@@ -366,6 +606,30 @@ using the <code class="docutils literal"><span class="pre">href</span></code> li
 </pre></div>
 </div>
 </div>
+</div>
+<div class="section" id="users">
+<span id="section-users"></span><h2><code class="docutils literal"><span class="pre">/users</span></code><a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h2>
+<p><em>Coming soon...</em></p>
+</div>
+<div class="section" id="work-types">
+<span id="section-wt"></span><h2><code class="docutils literal"><span class="pre">/work_types</span></code><a class="headerlink" href="#work-types" title="Permalink to this headline">¶</a></h2>
+<p><em>Coming soon...</em></p>
+</div>
+<div class="section" id="time-off-types">
+<span id="section-tot"></span><h2><code class="docutils literal"><span class="pre">/time_off_types</span></code><a class="headerlink" href="#time-off-types" title="Permalink to this headline">¶</a></h2>
+<p><em>Coming soon...</em></p>
+</div>
+<div class="section" id="labels">
+<span id="section-label"></span><h2><code class="docutils literal"><span class="pre">/labels</span></code><a class="headerlink" href="#labels" title="Permalink to this headline">¶</a></h2>
+<p><em>Coming soon...</em></p>
+</div>
+<div class="section" id="callback-records">
+<span id="section-cbr"></span><h2><code class="docutils literal"><span class="pre">/callback_records</span></code><a class="headerlink" href="#callback-records" title="Permalink to this headline">¶</a></h2>
+<p><em>Coming soon...</em></p>
+</div>
+<div class="section" id="titles">
+<span id="section-title"></span><h2><code class="docutils literal"><span class="pre">/titles</span></code><a class="headerlink" href="#titles" title="Permalink to this headline">¶</a></h2>
+<p><em>Coming soon...</em></p>
 </div>
 </div>
 

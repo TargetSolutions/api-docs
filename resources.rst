@@ -1,10 +1,27 @@
 Resources
 =========
 
+Conventions
+-----------
+
+Date / Time
+^^^^^^^^^^^
+
+We use a simplified version of the ISO 8601 standard. Dates are represented in the ``YYYY-MM-DD`` 
+format. Most dates with timestamps follow the ``YYYY-MM-DD hh:mm:ss`` format (e.g. "2015-03-15 19:33:59"), 
+where the timestamp is "timezoneless", it is implied to be in your organization's timezone 
+(or the timezone is irrelevant).
+
+For a few timestamp type data fields, we use the (still ISO 8601 standard) ``YYYY-MM-DDThh:mm:ss+00:00`` 
+format (example: "2015-03-21T19:45:33-06:00"). This is used for fields like contact time, response time, 
+creation date etc., where the timezone may be important (due to daylight savings time for example).
+
+.. rubric:: Endpoints
+
 ``/schedule``
 ----------------
 
-The schedule consists of *shifts*, *time offs*, *callbacks*, *trades*, *misc. hours* and *group events*.
+The schedule consists of *shifts*, *time offs*, *callbacks*, *trades* and *misc. hours*.
 They are wrapped by a top-level object containing metadata about the requested schedule (start date, end date, links for the next and previous period).
 
 This endpoint has two required parameters:
@@ -12,11 +29,11 @@ This endpoint has two required parameters:
 +----------------+-----------------------------+-------------------------+
 | Parameter      | Description                 | Format                  |
 +================+=============================+=========================+
-| ``start``      | The date                    |                         |
-|                | you need the data from      | 2015-03-15 08:00:00     |
+| ``start``      | The date                    | datetime                |
+|                | you need the data from      |                         |
 +----------------+-----------------------------+-------------------------+
-| ``end``        | The date                    |                         |
-|                | you need the data to        | 2015-03-15 08:00:00     |
+| ``end``        | The date                    | datetime                |
+|                | you need the data to        |                         |
 +----------------+-----------------------------+-------------------------+
 
 An example of returned schedule data looks like this::
@@ -98,7 +115,28 @@ This array contains the assignments of the day. An assignment looks like this::
       ]
    }
 
-Let's refer to one of these object as an ``asssignment``.
++-----------------------+---------------------------+--------------------+
+| Field                 | Description               | Type               |
++=======================+===========================+====================+
+| ``id``                | Unique identifier of the  | integer            |
+|                       | assignment                |                    |
++-----------------------+---------------------------+--------------------+
+| ``href``              | Link to full object       | string (URL)       |
++-----------------------+---------------------------+--------------------+
+| ``date``              | The day the assignment    | date               |
+|                       | starts on                 |                    |
++-----------------------+---------------------------+--------------------+
+| ``start``             | Start date of assignment  | datetime           |
++-----------------------+---------------------------+--------------------+
+| ``end``               | End date of assignment    | datetime           |
++-----------------------+---------------------------+--------------------+
+| ``name``              | Title of assignment       | string             |
++-----------------------+---------------------------+--------------------+
+| ``positions_to_fill`` | Employees needed          | integer            |
++-----------------------+---------------------------+--------------------+
+| ``shifts``            | Employees working the     | array              |
+|                       | assignment                |                    |
++-----------------------+---------------------------+--------------------+
 
 ``day.assignment.shifts``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -138,9 +176,39 @@ like this::
       ]
    }
 
++-----------------------+---------------------------+--------------------+
+| Field                 | Description               | Type               |
++=======================+===========================+====================+
+| ``id``                | Unique identifier of the  | integer            |
+|                       | work shift                |                    |
++-----------------------+---------------------------+--------------------+
+| ``href``              | Link to full object       | string (URL)       |
++-----------------------+---------------------------+--------------------+
+| ``start``             | Start date of shift       | datetime           |
++-----------------------+---------------------------+--------------------+
+| ``end``               | End date of shift         | datetime           |
++-----------------------+---------------------------+--------------------+
+| ``hold_over``         | Additional OT hours       | datetime           |
++-----------------------+---------------------------+--------------------+
+| ``recurring``         | Is it a regularly         | boolean            |
+|                       | occurring shift?          |                    |
++-----------------------+---------------------------+--------------------+
+| ``user``              | Employee working the      |See                 |
+|                       | shift                     |:ref:`section-users`|
++-----------------------+---------------------------+--------------------+
+| ``admin``             | Admin who assigned the    |See                 |
+|                       | shift                     |:ref:`section-users`|
++-----------------------+---------------------------+--------------------+
+| ``work_type``         | Type of work              |See                 |
+|                       | shift                     |:ref:`section-wt`   |
++-----------------------+---------------------------+--------------------+
+| ``labels``            | Applied Crew Scheduler    |array; see          |
+|                       | labels                    |:ref:`section-label`|
++-----------------------+---------------------------+--------------------+
+
 You will notice that some of the included objects have ``href`` properties. This is because we are only returning a sensible 
 subset of the available data about these objects. If you make a ``GET`` request to the provided URL, you can retrieve all of 
-the available information about them. @TODO See ``/user``, ``/work_type`` and ``/label`` for details.
+the available information about them.
 
 ``day.time_off``
 ^^^^^^^^^^^^^^^^
@@ -169,6 +237,28 @@ day. The general structure of one object in the array::
          "name": "Sick Leave [SL]"
       }
    }
+
++-----------------------+---------------------------+--------------------+
+| Field                 | Description               | Type               |
++=======================+===========================+====================+
+| ``id``                | Unique identifier of the  | integer            |
+|                       | time off                  |                    |
++-----------------------+---------------------------+--------------------+
+| ``href``              | Link to full object       | string (URL)       |
++-----------------------+---------------------------+--------------------+
+| ``start``             | Start date of time off    | datetime           |
++-----------------------+---------------------------+--------------------+
+| ``end``               | End date of time off      | datetime           |
++-----------------------+---------------------------+--------------------+
+| ``user``              | Employee on leave         |See                 |
+|                       |                           |:ref:`section-users`|
++-----------------------+---------------------------+--------------------+
+| ``admin``             | Admin who approved the    |See                 |
+|                       | time off                  |:ref:`section-users`|
++-----------------------+---------------------------+--------------------+
+| ``time_off_type``     | Type of time off          |See                 |
+|                       | shift                     |:ref:`section-tot`  |
++-----------------------+---------------------------+--------------------+
 
 ``day.callbacks``
 ^^^^^^^^^^^^^^^^^
@@ -202,8 +292,33 @@ will not be included, they are under ``day.assignment.shifts``. A ``callback`` o
       }
    }
 
-``records`` gives you all accepting employees of the callback. You can request more data about certain pieces of the callback 
-using the ``href`` links provided.
++-----------------------+---------------------------+--------------------+
+| Field                 | Description               | Type               |
++=======================+===========================+====================+
+| ``id``                | Unique identifier of the  | integer            |
+|                       | time off                  |                    |
++-----------------------+---------------------------+--------------------+
+| ``href``              | Link to full object       | string (URL)       |
++-----------------------+---------------------------+--------------------+
+| ``start``             | Start date of the         | datetime           |
+|                       | callback shift            |                    |
++-----------------------+---------------------------+--------------------+
+| ``end``               | End date of the           | datetime           |
+|                       | callback shift            |                    |
++-----------------------+---------------------------+--------------------+
+| ``positions_to_fill`` | Employees needed          | integer            |
++-----------------------+---------------------------+--------------------+
+| ``records``           | Accepting employees       |array; see          |
+|                       |                           |:ref:`section-cbr`  | 
++-----------------------+---------------------------+--------------------+
+| ``title``             | Employee type needed      |See                 |
+|                       | time off                  |:ref:`section-title`|
++-----------------------+---------------------------+--------------------+
+
+.. note::
+
+   ``records`` gives you all accepting employees of the callback. You can request more data about certain pieces of the callback 
+   using the ``href`` links provided.
 
 ``day.trades``
 ^^^^^^^^^^^^^^^^
@@ -251,3 +366,45 @@ This array provides data about any miscellaneous hours added for the day, in the
       },
       "work_type": "Training"
    }
+
+.. _section-users:
+
+``/users``
+----------
+
+*Coming soon...*
+
+.. _section-wt:
+
+``/work_types``
+---------------
+
+*Coming soon...*
+
+.. _section-tot:
+
+``/time_off_types``
+-------------------
+
+*Coming soon...*
+
+.. _section-label:
+
+``/labels``
+-------------------
+
+*Coming soon...*
+
+.. _section-cbr:
+
+``/callback_records``
+---------------------
+
+*Coming soon...*
+
+.. _section-title:
+
+``/titles``
+---------------------
+
+*Coming soon...*
