@@ -7,6 +7,18 @@ Resources
 The schedule consists of *shifts*, *time offs*, *callbacks*, *trades*, *misc. hours* and *group events*.
 They are wrapped by a top-level object containing metadata about the requested schedule (start date, end date, links for the next and previous period).
 
+This endpoint has two required parameters:
+
++----------------+-----------------------------+-------------------------+
+| Parameter      | Description                 | Format                  |
++================+=============================+=========================+
+| ``start``      | The date                    |                         |
+|                | you need the data from      | 2015-03-15 08:00:00     |
++----------------+-----------------------------+-------------------------+
+| ``end``        | The date                    |                         |
+|                | you need the data to        | 2015-03-15 08:00:00     |
++----------------+-----------------------------+-------------------------+
+
 An example of returned schedule data looks like this::
 
    {
@@ -51,8 +63,14 @@ An example of returned schedule data looks like this::
       },
       "next": {
          "href": "https://callbackstaffing.com/api/v1/schedule?start=2015-03-22%2008:00:00&end=2015-03-22%2008:00:00"
-      },
+      }
    }
+
+.. note::
+
+   While we are trying to make the API *RESTful*, some resources, including this one, are more of 
+   a convenient packaging of multiple resources for querying. You cannot issue a ``POST`` or ``DELETE``
+   request on this endpoint. 
 
 In the following sections, we try to introduce all the important data in the ``schedule`` resource.
 
@@ -69,12 +87,12 @@ This array contains the assignments of the day. An assignment looks like this::
 
    {
       "id": 1234,
+      "href": "https://callbackstaffing.com/api/v1/assignments/1234",
       "date": "2015-03-15",
       "start": "2015-03-15 08:00:00",
       "end": "2015-03-16 08:00:00",
       "name": "Station 1",
       "positions_to_fill": 3,
-      "recurring": true,
       "shifts": [
          ... see next section ...
       ]
@@ -90,32 +108,31 @@ like this::
 
    {
       "id": 456789,
-      "href": "https://callbackstaffing.com/api/v1/shift/456789",
+      "href": "https://callbackstaffing.com/api/v1/shifts/456789",
       "start": "2015-03-15 08:00:00",
       "end": "2015-03-16 08:00:00",
       "hold_over": 0,
       "recurring": true,
-      "recurrence_start": "2014-12-11",
       "user": {
          "id": 848,
-         "href": "https://callbackstaffing.com/api/v1/user/848",
+         "href": "https://callbackstaffing.com/api/v1/users/848",
          "name": "John Doe"
       },
       "admin": {
          "id": 138,
-         "href": "https://callbackstaffing.com/api/v1/user/138",
+         "href": "https://callbackstaffing.com/api/v1/users/138",
          "name": "Joe Boss"
       },
       "work_type": {
          "id": 33,
-         "href": "https://callbackstaffing.com/api/v1/work_type/33",
+         "href": "https://callbackstaffing.com/api/v1/work_types/33",
          "name": "Regular Time",
          "work_code": "REG001"
       },
       "labels": [
          {
             "id": 12,
-            "href": "https://callbackstaffing.com/api/v1/label/12",
+            "href": "https://callbackstaffing.com/api/v1/labels/12",
             "label": "ENG"
          }
       ]
@@ -136,34 +153,32 @@ day. The general structure of one object in the array::
       "href": "https://callbackstaffing.com/api/v1/time_off/623492",
       "start": "2015-03-15 08:00:00",
       "end": "2015-03-16 08:00:00",
-      "recurring": false,
       "user": {
          "id": 848,
-         "href": "https://callbackstaffing.com/api/v1/user/848",
+         "href": "https://callbackstaffing.com/api/v1/users/848",
          "name": "John Doe"
       },
       "admin": {
          "id": 138,
-         "href": "https://callbackstaffing.com/api/v1/user/138",
+         "href": "https://callbackstaffing.com/api/v1/users/138",
          "name": "Joe Boss"
       },
       "time_off_type": {
          "id": 45,
-         "href": "https://callbackstaffing.com/api/v1/time_off_type/45",
-         "name": "Sick Leave",
-         "work_code": "SL"
+         "href": "https://callbackstaffing.com/api/v1/time_off_types/45",
+         "name": "Sick Leave [SL]"
       }
    }
 
 ``day.callbacks``
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^
 
 In this array you will find all finalized callbacks for the day. Callback shifts that were drag & dropped to a work assignment 
 will not be included, they are under ``day.assignment.shifts``. A ``callback`` object is structured like this::
 
    {
       "id": 64012,
-      "href": "https://callbackstaffing.com/api/v1/callback/64012",
+      "href": "https://callbackstaffing.com/api/v1/callbacks/64012",
       "start": "2015-03-15 08:00:00",
       "end": "2015-03-16 08:00:00",
       "positions_to_fill": 1,
@@ -172,7 +187,7 @@ will not be included, they are under ``day.assignment.shifts``. A ``callback`` o
             "id": 2165743,
             "user": {
                "id": 848,
-               "href": "https://callbackstaffing.com/api/v1/user/848",
+               "href": "https://callbackstaffing.com/api/v1/users/848",
                "name": "John Doe"
             },
             "start": "2015-03-15 08:00:00",
@@ -182,7 +197,7 @@ will not be included, they are under ``day.assignment.shifts``. A ``callback`` o
       ]
       "title": {
          "id": 112,
-         "href": "https://callbackstaffing.com/api/v1/title/112",
+         "href": "https://callbackstaffing.com/api/v1/titles/112",
          "name": "Firefighter"
       }
    }
@@ -197,19 +212,42 @@ using the ``href`` links provided.
 
    {
       "id": 4355,
-      "href": "https://callbackstaffing.com/api/v1/trade/4355",
+      "href": "https://callbackstaffing.com/api/v1/trades/4355",
       "start": "2015-03-15 08:00:00",
       "end": "2015-03-16 08:00:00",
       "requesting_user": {
          "id": 848,
-         "href": "https://callbackstaffing.com/api/v1/user/848",
+         "href": "https://callbackstaffing.com/api/v1/users/848",
          "name": "John Doe"
       },
       "accepting_user": {
          "id": 138,
-         "href": "https://callbackstaffing.com/api/v1/user/138",
+         "href": "https://callbackstaffing.com/api/v1/users/138",
          "name": "Jack Smith"
+      },
+      "admin": {
+         "id": 98,
+         "href": "https://callbackstaffing.com/api/v1/users/98",
+         "name": "Steve Boss"
       }
    }
 
 Follow the top-level ``href`` link to receive all information about the trade.
+
+``day.misc``
+^^^^^^^^^^^^
+
+This array provides data about any miscellaneous hours added for the day, in the following format::
+
+   {
+      "id": 47711,
+      "href": "https://callbackstaffing.com/api/v1/misc/47711",
+      "date": "2015-03-16",
+      "length": 4.5,
+      "user": {
+         "id": 848,
+         "href": "https://callbackstaffing.com/api/v1/users/848",
+         "name": "John Doe"
+      },
+      "work_type": "Training"
+   }

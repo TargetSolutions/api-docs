@@ -32,7 +32,7 @@
   
     <link rel="top" title="Callback Staffing API 1.0 documentation" href="index.html"/>
         <link rel="next" title="Resources" href="resources.html"/>
-        <link rel="prev" title="Welcome to Callback Staffing API documentation!" href="index.html"/> 
+        <link rel="prev" title="Resources" href="resources.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -64,13 +64,17 @@
           
           
               <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Welcome</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#contents">Contents</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Authentication</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#receiving-an-access-token">Receiving an access token</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#authorizing-requests">Authorizing requests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="resources.html#v1-schedule"><code class="docutils literal"><span class="pre">/v1/schedule</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html#schedule"><code class="docutils literal"><span class="pre">/schedule</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -110,6 +114,10 @@
             
   <div class="section" id="authentication">
 <h1>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h1>
+<p>Our API uses OAuth 2.0 for authentication, specifically the <em>client credentials</em> grant type.
+The authentication process consists of requesting an access token with your organization&#8217;s
+<em>API key</em> and <em>API secret</em>, and using this access token in the <code class="docutils literal"><span class="pre">Authentication</span></code> HTTP header
+of any subsequent requests.</p>
 <div class="section" id="receiving-an-access-token">
 <h2>Receiving an access token<a class="headerlink" href="#receiving-an-access-token" title="Permalink to this headline">¶</a></h2>
 <p>You use access tokens to authorize any requests made towards our API. To request an access token,
@@ -128,12 +136,25 @@ issue a POST request to <code class="docutils literal"><span class="pre">https:/
     <span class="s">&quot;access_token&quot;</span><span class="p">:</span> <span class="s">&quot;DZs3IeaMP5uEAc2I19kJYl8Tbvsmgq9GaPQPaMjN&quot;</span><span class="p">,</span>
     <span class="s">&quot;token_type&quot;</span><span class="p">:</span> <span class="s">&quot;bearer&quot;</span><span class="p">,</span>
     <span class="s">&quot;expires&quot;</span><span class="p">:</span> <span class="mi">1426274440</span><span class="p">,</span>
-    <span class="s">&quot;expires_in&quot;</span><span class="p">:</span> <span class="mi">3600</span>
+    <span class="s">&quot;expires_in&quot;</span><span class="p">:</span> <span class="mi">86400</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal"><span class="pre">token_type</span></code> signifies that you have to use HTTP headers to authorize requests (see the next section).
 <code class="docutils literal"><span class="pre">expires</span></code> is a UNIX timestamp of the expiration date of the token (after which you have to request a new one). <code class="docutils literal"><span class="pre">expires_in</span></code> shows the expiration length in seconds.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Client access tokens currently expire in one week. If you try to use an expired access token, you
+might receive a response like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+    <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="mi">401</span><span class="p">,</span>
+    <span class="s">&quot;error&quot;</span><span class="p">:</span> <span class="s">&quot;unauthorized&quot;</span><span class="p">,</span>
+    <span class="s">&quot;error_message&quot;</span><span class="p">:</span> <span class="s">&quot;Access token is not valid&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p class="last">In this case, you simply have to request a new access token using the method described above.</p>
+</div>
 </div>
 </div>
 <div class="section" id="authorizing-requests">
@@ -161,7 +182,7 @@ issue a POST request to <code class="docutils literal"><span class="pre">https:/
         <a href="resources.html" class="btn btn-neutral float-right" title="Resources">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Welcome to Callback Staffing API documentation!"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="resources.html" class="btn btn-neutral" title="Resources"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
