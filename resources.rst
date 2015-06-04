@@ -367,6 +367,75 @@ This array provides data about any miscellaneous hours added for the day, in the
       "work_type": "Training"
    }
 
+.. _section-tot:
+
+``/time_off_types``
+-------------------
+
+Get all non-deleted time off types for the active company. Format::
+
+   [ 
+      {
+         "id": "5",
+         "label": "Sick",
+         "work_code": "SL",
+         "required_buffer": "0.00",
+         "instance_limit": "1",
+         "primary_color": "#2474a9",
+         "secondary_color": "#FFFFFF",
+         "force_include": true,
+         "forward": false,
+         "href": "https://callbackstaffing.com/api/v1/time_off_types/5"
+      }
+      {
+         "id": "6",
+         "label": "Vacation",
+         "work_code": "VAC",
+         "required_buffer": "0.00",
+         "instance_limit": "0",
+         "primary_color": "#3f5647",
+         "secondary_color": "#FFFFFF",
+         "force_include": false,
+         "forward": true,
+         "href": "https://callbackstaffing.com/api/v1/time_off_types/6"
+      }
+   ]
+
++-----------------------+---------------------------+--------------------+
+| Field                 | Description               | Type               |
++=======================+===========================+====================+
+| ``id``                | Unique identifier of the  | integer            |
+|                       | time off type             |                    |
++-----------------------+---------------------------+--------------------+
+| ``href``              | Link to full object       | string (URL)       |
++-----------------------+---------------------------+--------------------+
+| ``label``             | Name of the               | string             |
+|                       | time off type             |                    |
++-----------------------+---------------------------+--------------------+
+| ``work_code``         | Shortcode of the          | string             |
+|                       | time off type             |                    |
++-----------------------+---------------------------+--------------------+
+| ``required_buffer``   | Hours needed between      | decimal            |
+|                       | request and start of the  |                    |
+|                       | time off entry            |                    |
++-----------------------+---------------------------+--------------------+
+| ``instance_limit``    | Max. allowed number of    | integer            |
+|                       | this type in a year       |                    | 
++-----------------------+---------------------------+--------------------+
+| ``primary_color``     | Main color of the type    | hexadecimal        |
+|                       | (background color)        | RGB code           |
++-----------------------+---------------------------+--------------------+
+| ``secondary_color``   | Text color of the type    | hexadecimal        |
+|                       |                           | RGB code           |
++-----------------------+---------------------------+--------------------+
+| ``force_include``     | Ignore time off of this   | boolean            |
+|                       | type in callbacks         |                    |
++-----------------------+---------------------------+--------------------+
+| ``forward``           | Forward time off of this  | boolean            |
+|                       | type to other admins      |                    |
+|                       | if not handled            |                    |
++-----------------------+---------------------------+--------------------+
+
 .. _section-users:
 
 ``/users``
@@ -378,13 +447,6 @@ This array provides data about any miscellaneous hours added for the day, in the
 
 ``/work_types``
 ---------------
-
-*Coming soon...*
-
-.. _section-tot:
-
-``/time_off_types``
--------------------
 
 *Coming soon...*
 
