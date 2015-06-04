@@ -422,11 +422,11 @@ Get all non-deleted time off types for the active company. Format::
 | ``instance_limit``    | Max. allowed number of    | integer            |
 |                       | this type in a year       |                    | 
 +-----------------------+---------------------------+--------------------+
-| ``primary_color``     | Main color of the type    | hexadecimal        |
-|                       | (background color)        | RGB code           |
+| ``primary_color``     | Main color of the type    | RGB hex            |
+|                       | (background color)        |                    |
 +-----------------------+---------------------------+--------------------+
-| ``secondary_color``   | Text color of the type    | hexadecimal        |
-|                       |                           | RGB code           |
+| ``secondary_color``   | Text color of the type    | RGB hex            |
+|                       |                           |                    |
 +-----------------------+---------------------------+--------------------+
 | ``force_include``     | Ignore time off of this   | boolean            |
 |                       | type in callbacks         |                    |
