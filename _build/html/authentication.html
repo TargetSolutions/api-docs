@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Authentication &mdash; Callback Staffing API 1.0 documentation</title>
@@ -14,7 +15,6 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -35,7 +35,7 @@
         <link rel="prev" title="Resources" href="resources.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -47,8 +47,14 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
         
-          <a href="index.html" class="fa fa-home"> Callback Staffing API</a>
+
         
+          <a href="index.html" class="icon icon-home"> Callback Staffing API
+        
+
+        
+        </a>
+
         
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -57,6 +63,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
+
+        
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -65,16 +73,63 @@
           
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Welcome</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="index.html#contents">Contents</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#contents">Contents</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="">Authentication</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#receiving-an-access-token">Receiving an access token</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#authorizing-requests">Authorizing requests</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="resources.html#conventions">Conventions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="resources.html#schedule"><code class="docutils literal"><span class="pre">/schedule</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="resources.html#time-off-types"><code class="docutils literal"><span class="pre">/time_off_types</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="resources.html#labels"><code class="docutils literal"><span class="pre">/labels</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="resources.html#users"><code class="docutils literal"><span class="pre">/users</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="resources.html#work-types"><code class="docutils literal"><span class="pre">/work_types</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="resources.html#callback-records"><code class="docutils literal"><span class="pre">/callback_records</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="resources.html#titles"><code class="docutils literal"><span class="pre">/titles</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Authentication</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#receiving-an-access-token">Receiving an access token</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#authorizing-requests">Authorizing requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#receiving-an-access-token">Receiving an access token</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#curl">curl</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#authorizing-requests">Authorizing requests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#curl-example">curl example</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="resources.html#schedule"><code class="docutils literal"><span class="pre">/schedule</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html#conventions">Conventions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="resources.html#date-time">Date / Time</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html#schedule"><code class="docutils literal"><span class="pre">/schedule</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="resources.html#days"><code class="docutils literal"><span class="pre">days</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html#day-assignments"><code class="docutils literal"><span class="pre">day.assignments</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html#day-assignment-shifts"><code class="docutils literal"><span class="pre">day.assignment.shifts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html#day-time-off"><code class="docutils literal"><span class="pre">day.time_off</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html#day-callbacks"><code class="docutils literal"><span class="pre">day.callbacks</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html#day-trades"><code class="docutils literal"><span class="pre">day.trades</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html#day-misc"><code class="docutils literal"><span class="pre">day.misc</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html#time-off-types"><code class="docutils literal"><span class="pre">/time_off_types</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html#labels"><code class="docutils literal"><span class="pre">/labels</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="resources.html#get-labels"><code class="docutils literal"><span class="pre">GET</span> <span class="pre">/labels</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html#post-labels"><code class="docutils literal"><span class="pre">POST</span> <span class="pre">/labels</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html#users"><code class="docutils literal"><span class="pre">/users</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html#work-types"><code class="docutils literal"><span class="pre">/work_types</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html#callback-records"><code class="docutils literal"><span class="pre">/callback_records</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html#titles"><code class="docutils literal"><span class="pre">/titles</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -104,7 +159,9 @@
     <li>Authentication</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/authentication.txt" rel="nofollow"> View page source</a>
+          
+            <a href="_sources/authentication.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
   </ul>
@@ -179,10 +236,10 @@ might receive a response like this:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="resources.html" class="btn btn-neutral float-right" title="Resources">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="resources.html" class="btn btn-neutral float-right" title="Resources" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="resources.html" class="btn btn-neutral" title="Resources"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="resources.html" class="btn btn-neutral" title="Resources" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -194,10 +251,10 @@ might receive a response like this:</p>
         &copy; Copyright 2015, Oliver Nagy.
     </p>
   </div>
-
   Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-  
+
 </footer>
+
         </div>
       </div>
 

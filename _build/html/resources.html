@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Resources &mdash; Callback Staffing API 1.0 documentation</title>
@@ -14,7 +15,6 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -34,7 +34,7 @@
         <link rel="prev" title="Authentication" href="authentication.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -46,8 +46,14 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
         
-          <a href="index.html" class="fa fa-home"> Callback Staffing API</a>
+
         
+          <a href="index.html" class="icon icon-home"> Callback Staffing API
+        
+
+        
+        </a>
+
         
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -56,6 +62,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
+
+        
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -64,21 +72,64 @@
           
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Welcome</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="index.html#contents">Contents</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#contents">Contents</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="authentication.html">Authentication</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#receiving-an-access-token">Receiving an access token</a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authorizing-requests">Authorizing requests</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">Resources</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#conventions">Conventions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#schedule"><code class="docutils literal"><span class="pre">/schedule</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#time-off-types"><code class="docutils literal"><span class="pre">/time_off_types</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#labels"><code class="docutils literal"><span class="pre">/labels</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users"><code class="docutils literal"><span class="pre">/users</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#work-types"><code class="docutils literal"><span class="pre">/work_types</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#callback-records"><code class="docutils literal"><span class="pre">/callback_records</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#titles"><code class="docutils literal"><span class="pre">/titles</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="authentication.html#receiving-an-access-token">Receiving an access token</a></li>
-<li class="toctree-l2"><a class="reference internal" href="authentication.html#authorizing-requests">Authorizing requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#receiving-an-access-token">Receiving an access token</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#curl">curl</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#authorizing-requests">Authorizing requests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#curl-example">curl example</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Resources</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#conventions">Conventions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#schedule"><code class="docutils literal"><span class="pre">/schedule</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conventions">Conventions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#date-time">Date / Time</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#schedule"><code class="docutils literal"><span class="pre">/schedule</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#days"><code class="docutils literal"><span class="pre">days</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#day-assignments"><code class="docutils literal"><span class="pre">day.assignments</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#day-assignment-shifts"><code class="docutils literal"><span class="pre">day.assignment.shifts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#day-time-off"><code class="docutils literal"><span class="pre">day.time_off</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#day-callbacks"><code class="docutils literal"><span class="pre">day.callbacks</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#day-trades"><code class="docutils literal"><span class="pre">day.trades</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#day-misc"><code class="docutils literal"><span class="pre">day.misc</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#time-off-types"><code class="docutils literal"><span class="pre">/time_off_types</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#labels"><code class="docutils literal"><span class="pre">/labels</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-labels"><code class="docutils literal"><span class="pre">GET</span> <span class="pre">/labels</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-labels-id"><code class="docutils literal"><span class="pre">GET</span> <span class="pre">/labels/{id}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#post-labels"><code class="docutils literal"><span class="pre">POST</span> <span class="pre">/labels</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#post-labels-id"><code class="docutils literal"><span class="pre">POST</span> <span class="pre">/labels/{id}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delete-labels-id"><code class="docutils literal"><span class="pre">DELETE</span> <span class="pre">/labels/{id}</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#users"><code class="docutils literal"><span class="pre">/users</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#work-types"><code class="docutils literal"><span class="pre">/work_types</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#time-off-types"><code class="docutils literal"><span class="pre">/time_off_types</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#labels"><code class="docutils literal"><span class="pre">/labels</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#callback-records"><code class="docutils literal"><span class="pre">/callback_records</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#titles"><code class="docutils literal"><span class="pre">/titles</span></code></a></li>
 </ul>
@@ -110,7 +161,9 @@
     <li>Resources</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/resources.txt" rel="nofollow"> View page source</a>
+          
+            <a href="_sources/resources.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
   </ul>
@@ -607,20 +660,225 @@ using the <code class="docutils literal"><span class="pre">href</span></code> li
 </div>
 </div>
 </div>
+<div class="section" id="time-off-types">
+<span id="section-tot"></span><h2><code class="docutils literal"><span class="pre">/time_off_types</span></code><a class="headerlink" href="#time-off-types" title="Permalink to this headline">¶</a></h2>
+<p>Get all non-deleted time off types for the active company. Format:</p>
+<div class="highlight-python"><div class="highlight"><pre>[
+   {
+      &quot;id&quot;: &quot;5&quot;,
+      &quot;label&quot;: &quot;Sick&quot;,
+      &quot;work_code&quot;: &quot;SL&quot;,
+      &quot;required_buffer&quot;: &quot;0.00&quot;,
+      &quot;instance_limit&quot;: &quot;1&quot;,
+      &quot;primary_color&quot;: &quot;#2474a9&quot;,
+      &quot;secondary_color&quot;: &quot;#FFFFFF&quot;,
+      &quot;force_include&quot;: true,
+      &quot;forward&quot;: false,
+      &quot;href&quot;: &quot;https://callbackstaffing.com/api/v1/time_off_types/5&quot;
+   }
+   {
+      &quot;id&quot;: &quot;6&quot;,
+      &quot;label&quot;: &quot;Vacation&quot;,
+      &quot;work_code&quot;: &quot;VAC&quot;,
+      &quot;required_buffer&quot;: &quot;0.00&quot;,
+      &quot;instance_limit&quot;: &quot;0&quot;,
+      &quot;primary_color&quot;: &quot;#3f5647&quot;,
+      &quot;secondary_color&quot;: &quot;#FFFFFF&quot;,
+      &quot;force_include&quot;: false,
+      &quot;forward&quot;: true,
+      &quot;href&quot;: &quot;https://callbackstaffing.com/api/v1/time_off_types/6&quot;
+   }
+]
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="39%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Description</th>
+<th class="head">Type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">id</span></code></td>
+<td>Unique identifier of the
+time off type</td>
+<td>integer</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">href</span></code></td>
+<td>Link to full object</td>
+<td>string (URL)</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">label</span></code></td>
+<td>Name of the
+time off type</td>
+<td>string</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">work_code</span></code></td>
+<td>Shortcode of the
+time off type</td>
+<td>string</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">required_buffer</span></code></td>
+<td>Hours needed between
+request and start of the
+time off entry</td>
+<td>decimal</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">instance_limit</span></code></td>
+<td>Max. allowed number of
+this type in a year</td>
+<td>integer</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">primary_color</span></code></td>
+<td>Main color of the type
+(background color)</td>
+<td>RGB hex</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">secondary_color</span></code></td>
+<td>Text color of the type</td>
+<td>RGB hex</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">force_include</span></code></td>
+<td>Ignore time off of this
+type in callbacks</td>
+<td>boolean</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">forward</span></code></td>
+<td>Forward time off of this
+type to other admins
+if not handled</td>
+<td>boolean</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="labels">
+<span id="section-label"></span><h2><code class="docutils literal"><span class="pre">/labels</span></code><a class="headerlink" href="#labels" title="Permalink to this headline">¶</a></h2>
+<p>Manage crew scheduler labels with these endpoints.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="64%" />
+<col width="13%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Description</th>
+<th class="head">Type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">id</span></code></td>
+<td>Unique identifier of the label</td>
+<td>integer</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">label</span></code></td>
+<td>The text appearing on the label</td>
+<td>string</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">color</span></code></td>
+<td>The background color of the label</td>
+<td>RGB hex</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">text_color</span></code></td>
+<td>The text color of the label</td>
+<td>RGB hex</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">position</span></code></td>
+<td>Relative position of shifts with this label</td>
+<td>integer</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="get-labels">
+<h3><code class="docutils literal"><span class="pre">GET</span> <span class="pre">/labels</span></code><a class="headerlink" href="#get-labels" title="Permalink to this headline">¶</a></h3>
+<p>Receive a list of all crew scheduler labels available for the company.
+Example response:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span>
+   <span class="p">{</span>
+      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;1773&quot;</span><span class="p">,</span>
+      <span class="s">&quot;label&quot;</span><span class="p">:</span> <span class="s">&quot;CPT&quot;</span><span class="p">,</span>
+      <span class="s">&quot;color&quot;</span><span class="p">:</span> <span class="s">&quot;#CCCCCC&quot;</span><span class="p">,</span>
+      <span class="s">&quot;text_color&quot;</span><span class="p">:</span> <span class="s">&quot;#333333&quot;</span><span class="p">,</span>
+      <span class="s">&quot;position&quot;</span><span class="p">:</span> <span class="s">&quot;1&quot;</span>
+   <span class="p">},</span>
+   <span class="p">{</span>
+      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;1774&quot;</span><span class="p">,</span>
+      <span class="s">&quot;label&quot;</span><span class="p">:</span> <span class="s">&quot;ENG&quot;</span><span class="p">,</span>
+      <span class="s">&quot;color&quot;</span><span class="p">:</span> <span class="s">&quot;#ff0000&quot;</span><span class="p">,</span>
+      <span class="s">&quot;text_color&quot;</span><span class="p">:</span> <span class="s">&quot;#ffffff&quot;</span><span class="p">,</span>
+      <span class="s">&quot;position&quot;</span><span class="p">:</span> <span class="s">&quot;2&quot;</span>
+   <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-labels-id">
+<h3><code class="docutils literal"><span class="pre">GET</span> <span class="pre">/labels/{id}</span></code><a class="headerlink" href="#get-labels-id" title="Permalink to this headline">¶</a></h3>
+<p>Receive the details of one particular label.
+Example response (<code class="docutils literal"><span class="pre">GET</span> <span class="pre">/labels/1773</span></code>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+   <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;1773&quot;</span><span class="p">,</span>
+   <span class="s">&quot;label&quot;</span><span class="p">:</span> <span class="s">&quot;CPT&quot;</span><span class="p">,</span>
+   <span class="s">&quot;color&quot;</span><span class="p">:</span> <span class="s">&quot;#CCCCCC&quot;</span><span class="p">,</span>
+   <span class="s">&quot;text_color&quot;</span><span class="p">:</span> <span class="s">&quot;#333333&quot;</span><span class="p">,</span>
+   <span class="s">&quot;position&quot;</span><span class="p">:</span> <span class="s">&quot;1&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="post-labels">
+<h3><code class="docutils literal"><span class="pre">POST</span> <span class="pre">/labels</span></code><a class="headerlink" href="#post-labels" title="Permalink to this headline">¶</a></h3>
+<p>Create a new crew scheduler label in the system.
+Required fields:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">label</span></code> - the text on the label</li>
+<li><code class="docutils literal"><span class="pre">color</span></code> - the background color of the label, in HEX format (#RRGGBB)</li>
+<li><code class="docutils literal"><span class="pre">text_color</span></code> - the text color of the label, in HEX format</li>
+</ul>
+</div></blockquote>
+<p>Optional fields:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">position</span></code> - The relative position of shifts with this label inside an assignment</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="post-labels-id">
+<h3><code class="docutils literal"><span class="pre">POST</span> <span class="pre">/labels/{id}</span></code><a class="headerlink" href="#post-labels-id" title="Permalink to this headline">¶</a></h3>
+<p>Change an existing crew scheduler label in the system.
+Required fields:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">label</span></code> - the text on the label</li>
+<li><code class="docutils literal"><span class="pre">color</span></code> - the background color of the label, in HEX format (#RRGGBB)</li>
+<li><code class="docutils literal"><span class="pre">text_color</span></code> - the text color of the label, in HEX format</li>
+</ul>
+</div></blockquote>
+<p>Optional fields:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">position</span></code> - The relative position of shifts with this label inside an assignment</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="delete-labels-id">
+<h3><code class="docutils literal"><span class="pre">DELETE</span> <span class="pre">/labels/{id}</span></code><a class="headerlink" href="#delete-labels-id" title="Permalink to this headline">¶</a></h3>
+<p>Remove an existing crew scheduler label from the system.</p>
+</div>
+</div>
 <div class="section" id="users">
 <span id="section-users"></span><h2><code class="docutils literal"><span class="pre">/users</span></code><a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h2>
 <p><em>Coming soon...</em></p>
 </div>
 <div class="section" id="work-types">
 <span id="section-wt"></span><h2><code class="docutils literal"><span class="pre">/work_types</span></code><a class="headerlink" href="#work-types" title="Permalink to this headline">¶</a></h2>
-<p><em>Coming soon...</em></p>
-</div>
-<div class="section" id="time-off-types">
-<span id="section-tot"></span><h2><code class="docutils literal"><span class="pre">/time_off_types</span></code><a class="headerlink" href="#time-off-types" title="Permalink to this headline">¶</a></h2>
-<p><em>Coming soon...</em></p>
-</div>
-<div class="section" id="labels">
-<span id="section-label"></span><h2><code class="docutils literal"><span class="pre">/labels</span></code><a class="headerlink" href="#labels" title="Permalink to this headline">¶</a></h2>
 <p><em>Coming soon...</em></p>
 </div>
 <div class="section" id="callback-records">
@@ -640,7 +898,7 @@ using the <code class="docutils literal"><span class="pre">href</span></code> li
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="authentication.html" class="btn btn-neutral" title="Authentication"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="authentication.html" class="btn btn-neutral" title="Authentication" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -652,10 +910,10 @@ using the <code class="docutils literal"><span class="pre">href</span></code> li
         &copy; Copyright 2015, Oliver Nagy.
     </p>
   </div>
-
   Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-  
+
 </footer>
+
         </div>
       </div>
 

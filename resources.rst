@@ -436,37 +436,98 @@ Get all non-deleted time off types for the active company. Format::
 |                       | if not handled            |                    |
 +-----------------------+---------------------------+--------------------+
 
-.. _section-users:
-
-``/users``
-----------
-
-*Coming soon...*
-
-.. _section-wt:
-
-``/work_types``
----------------
-
-*Coming soon...*
-
 .. _section-label:
 
 ``/labels``
--------------------
+-----------
 
-*Coming soon...*
+Manage crew scheduler labels with these endpoints.
 
-.. _section-cbr:
++----------------+---------------------------------------------+---------+
+| Field          | Description                                 | Type    |
++================+=============================================+=========+
+| ``id``         | Unique identifier of the label              | integer |
++----------------+---------------------------------------------+---------+
+| ``label``      | The text appearing on the label             | string  |
++----------------+---------------------------------------------+---------+
+| ``color``      | The background color of the label           | RGB hex |
++----------------+---------------------------------------------+---------+
+| ``text_color`` | The text color of the label                 | RGB hex |
++----------------+---------------------------------------------+---------+
+| ``position``   | Relative position of shifts with this label | integer |
++----------------+---------------------------------------------+---------+
 
-``/callback_records``
----------------------
+``GET /labels``
+^^^^^^^^^^^^^^^
 
-*Coming soon...*
+Receive a list of all crew scheduler labels available for the company.
+Example response::
 
-.. _section-title:
+   [ 
+      {
+         "id": "1773",
+         "label": "CPT",
+         "color": "#CCCCCC",
+         "text_color": "#333333",
+         "position": "1"
+      },
+      {
+         "id": "1774",
+         "label": "ENG",
+         "color": "#ff0000",
+         "text_color": "#ffffff",
+         "position": "2"
+      }
+   ]
 
-``/titles``
----------------------
 
-*Coming soon...*
+
+
+``GET /labels/{id}``
+^^^^^^^^^^^^^^^
+
+Receive the details of one particular label.
+Example response (``GET /labels/1773``)::
+
+   {
+      "id": "1773",
+      "label": "CPT",
+      "color": "#CCCCCC",
+      "text_color": "#333333",
+      "position": "1"
+   }
+
+``POST /labels``
+^^^^^^^^^^^^^^^^
+
+Create a new crew scheduler label in the system.
+Required fields:
+   
+   * ``label`` - the text on the label
+   * ``color`` - the background color of the label, in HEX format (#RRGGBB)
+   * ``text_color`` - the text color of the label, in HEX format
+
+Optional fields:
+
+   * ``position`` - The relative position of shifts with this label inside an assignment
+
+
+``POST /labels/{id}``
+^^^^^^^^^^^^^^^^
+
+Change an existing crew scheduler label in the system.
+Required fields:
+   
+   * ``label`` - the text on the label
+   * ``color`` - the background color of the label, in HEX format (#RRGGBB)
+   * ``text_color`` - the text color of the label, in HEX format
+
+Optional fields:
+
+   * ``position`` - The relative position of shifts with this label inside an assignment
+
+
+``DELETE /labels/{id}``
+^^^^^^^^^^^^^^^^
+
+Remove an existing crew scheduler label from the system.
