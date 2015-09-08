@@ -484,7 +484,7 @@ Example response::
 
 
 ``GET /labels/{id}``
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 Receive the details of one particular label.
 Example response (``GET /labels/1773``)::
@@ -513,7 +513,7 @@ Optional fields:
 
 
 ``POST /labels/{id}``
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 Change an existing crew scheduler label in the system.
 Required fields:
@@ -528,6 +528,97 @@ Optional fields:
 
 
 ``DELETE /labels/{id}``
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
 
 Remove an existing crew scheduler label from the system.
+
+.. _section-filter:
+
+``/filters``
+------------
+
+Manage specialty classification filters
+
++----------------+------------------------------------------+-----------+
+| Field          | Description                              | Type      |
++================+==========================================+===========+
+| ``id``         | Unique identifier of the filter          | integer   |
++----------------+------------------------------------------+-----------+
+| ``label``      | The name of the filter                   | string    |
++----------------+------------------------------------------+-----------+
+| ``created_on`` | Timestamp of the creation of this filter | timestamp |
++----------------+------------------------------------------+-----------+
+| ``user``       | The user who created this resource       | ``User``  |
++----------------+------------------------------------------+-----------+
+
+``GET /filters``
+^^^^^^^^^^^^^^^^
+
+Receive a list of all active specialty classification filters
+Example response::
+
+   [ 
+      {
+         "id": "7",
+         "label": "Rescue Certified",
+         "created_on": "2014-10-29T02:17:51-0700",
+         "user": {
+            id: "848",
+            name: "John Doe"
+         }
+      },
+      {
+         "id": "8",
+         "label": "Dive Team",
+         "created_on": "2014-10-30T12:04:01-0700",
+         "user": {
+            id: "848",
+            name: "John Doe"
+         }
+      }
+   ]
+
+
+
+
+``GET /filters/{id}``
+^^^^^^^^^^^^^^^^^^^^^
+
+Receive the details of one particular specialty classification filter.
+Example response (``GET /labels/7``)::
+
+   {
+      "id": "7",
+         "label": "Rescue Certified",
+         "created_on": "2014-10-29T02:17:51-0700",
+         "deleted": "0",
+         "user": {
+            id: "848",
+            name: "John Doe"
+         }
+   }
+
+The ``deleted`` key indicates if the filter has been deleted, 0 - active, 1 - deleted. 
+
+``POST /filters``
+^^^^^^^^^^^^^^^^^
+
+Create a new specialty classification filter in the system.
+Required fields:
+   
+   * ``label`` - the name of the specialty classification filter
+
+
+``POST /filters/{id}``
+^^^^^^^^^^^^^^^^^^^^^^
+
+Change an existing specialty classification filter in the system.
+Required fields:
+   
+   * ``label`` - the name of the specialty classification filter
+
+
+``DELETE /filters/{id}``
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Remove an existing specialty classification filter from the system.

@@ -83,10 +83,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#schedule"><code class="docutils literal"><span class="pre">/schedule</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#time-off-types"><code class="docutils literal"><span class="pre">/time_off_types</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#labels"><code class="docutils literal"><span class="pre">/labels</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#users"><code class="docutils literal"><span class="pre">/users</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#work-types"><code class="docutils literal"><span class="pre">/work_types</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#callback-records"><code class="docutils literal"><span class="pre">/callback_records</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#titles"><code class="docutils literal"><span class="pre">/titles</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filters"><code class="docutils literal"><span class="pre">/filters</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -128,10 +125,14 @@
 <li class="toctree-l3"><a class="reference internal" href="#delete-labels-id"><code class="docutils literal"><span class="pre">DELETE</span> <span class="pre">/labels/{id}</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#users"><code class="docutils literal"><span class="pre">/users</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#work-types"><code class="docutils literal"><span class="pre">/work_types</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#callback-records"><code class="docutils literal"><span class="pre">/callback_records</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#titles"><code class="docutils literal"><span class="pre">/titles</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#filters"><code class="docutils literal"><span class="pre">/filters</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-filters"><code class="docutils literal"><span class="pre">GET</span> <span class="pre">/filters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-filters-id"><code class="docutils literal"><span class="pre">GET</span> <span class="pre">/filters/{id}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#post-filters"><code class="docutils literal"><span class="pre">POST</span> <span class="pre">/filters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#post-filters-id"><code class="docutils literal"><span class="pre">POST</span> <span class="pre">/filters/{id}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delete-filters-id"><code class="docutils literal"><span class="pre">DELETE</span> <span class="pre">/filters/{id}</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -424,19 +425,19 @@ occurring shift?</td>
 <td>Employee working the
 shift</td>
 <td>See
-<a class="reference internal" href="#section-users"><span>/users</span></a></td>
+<span class="xref std std-ref">section-users</span></td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">admin</span></code></td>
 <td>Admin who assigned the
 shift</td>
 <td>See
-<a class="reference internal" href="#section-users"><span>/users</span></a></td>
+<span class="xref std std-ref">section-users</span></td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">work_type</span></code></td>
 <td>Type of work
 shift</td>
 <td>See
-<a class="reference internal" href="#section-wt"><span>/work_types</span></a></td>
+<span class="xref std std-ref">section-wt</span></td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">labels</span></code></td>
 <td>Applied Crew Scheduler
@@ -510,13 +511,13 @@ time off</td>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">user</span></code></td>
 <td>Employee on leave</td>
 <td>See
-<a class="reference internal" href="#section-users"><span>/users</span></a></td>
+<span class="xref std std-ref">section-users</span></td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">admin</span></code></td>
 <td>Admin who approved the
 time off</td>
 <td>See
-<a class="reference internal" href="#section-users"><span>/users</span></a></td>
+<span class="xref std std-ref">section-users</span></td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">time_off_type</span></code></td>
 <td>Type of time off
@@ -597,13 +598,13 @@ callback shift</td>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">records</span></code></td>
 <td>Accepting employees</td>
 <td>array; see
-<a class="reference internal" href="#section-cbr"><span>/callback_records</span></a></td>
+<span class="xref std std-ref">section-cbr</span></td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">title</span></code></td>
 <td>Employee type needed
 time off</td>
 <td>See
-<a class="reference internal" href="#section-title"><span>/titles</span></a></td>
+<span class="xref std std-ref">section-title</span></td>
 </tr>
 </tbody>
 </table>
@@ -873,21 +874,109 @@ Required fields:</p>
 <p>Remove an existing crew scheduler label from the system.</p>
 </div>
 </div>
-<div class="section" id="users">
-<span id="section-users"></span><h2><code class="docutils literal"><span class="pre">/users</span></code><a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h2>
-<p><em>Coming soon...</em></p>
+<div class="section" id="filters">
+<span id="section-filter"></span><h2><code class="docutils literal"><span class="pre">/filters</span></code><a class="headerlink" href="#filters" title="Permalink to this headline">¶</a></h2>
+<p>Manage specialty classification filters</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="61%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Description</th>
+<th class="head">Type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">id</span></code></td>
+<td>Unique identifier of the filter</td>
+<td>integer</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">label</span></code></td>
+<td>The name of the filter</td>
+<td>string</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">created_on</span></code></td>
+<td>Timestamp of the creation of this filter</td>
+<td>timestamp</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">user</span></code></td>
+<td>The user who created this resource</td>
+<td><code class="docutils literal"><span class="pre">User</span></code></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="get-filters">
+<h3><code class="docutils literal"><span class="pre">GET</span> <span class="pre">/filters</span></code><a class="headerlink" href="#get-filters" title="Permalink to this headline">¶</a></h3>
+<p>Receive a list of all active specialty classification filters
+Example response:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span>
+   <span class="p">{</span>
+      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;7&quot;</span><span class="p">,</span>
+      <span class="s">&quot;label&quot;</span><span class="p">:</span> <span class="s">&quot;Rescue Certified&quot;</span><span class="p">,</span>
+      <span class="s">&quot;created_on&quot;</span><span class="p">:</span> <span class="s">&quot;2014-10-29T02:17:51-0700&quot;</span><span class="p">,</span>
+      <span class="s">&quot;user&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nb">id</span><span class="p">:</span> <span class="s">&quot;848&quot;</span><span class="p">,</span>
+         <span class="n">name</span><span class="p">:</span> <span class="s">&quot;John Doe&quot;</span>
+      <span class="p">}</span>
+   <span class="p">},</span>
+   <span class="p">{</span>
+      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;8&quot;</span><span class="p">,</span>
+      <span class="s">&quot;label&quot;</span><span class="p">:</span> <span class="s">&quot;Dive Team&quot;</span><span class="p">,</span>
+      <span class="s">&quot;created_on&quot;</span><span class="p">:</span> <span class="s">&quot;2014-10-30T12:04:01-0700&quot;</span><span class="p">,</span>
+      <span class="s">&quot;user&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nb">id</span><span class="p">:</span> <span class="s">&quot;848&quot;</span><span class="p">,</span>
+         <span class="n">name</span><span class="p">:</span> <span class="s">&quot;John Doe&quot;</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
 </div>
-<div class="section" id="work-types">
-<span id="section-wt"></span><h2><code class="docutils literal"><span class="pre">/work_types</span></code><a class="headerlink" href="#work-types" title="Permalink to this headline">¶</a></h2>
-<p><em>Coming soon...</em></p>
 </div>
-<div class="section" id="callback-records">
-<span id="section-cbr"></span><h2><code class="docutils literal"><span class="pre">/callback_records</span></code><a class="headerlink" href="#callback-records" title="Permalink to this headline">¶</a></h2>
-<p><em>Coming soon...</em></p>
+<div class="section" id="get-filters-id">
+<h3><code class="docutils literal"><span class="pre">GET</span> <span class="pre">/filters/{id}</span></code><a class="headerlink" href="#get-filters-id" title="Permalink to this headline">¶</a></h3>
+<p>Receive the details of one particular specialty classification filter.
+Example response (<code class="docutils literal"><span class="pre">GET</span> <span class="pre">/labels/7</span></code>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+   <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;7&quot;</span><span class="p">,</span>
+      <span class="s">&quot;label&quot;</span><span class="p">:</span> <span class="s">&quot;Rescue Certified&quot;</span><span class="p">,</span>
+      <span class="s">&quot;created_on&quot;</span><span class="p">:</span> <span class="s">&quot;2014-10-29T02:17:51-0700&quot;</span><span class="p">,</span>
+      <span class="s">&quot;deleted&quot;</span><span class="p">:</span> <span class="s">&quot;0&quot;</span><span class="p">,</span>
+      <span class="s">&quot;user&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nb">id</span><span class="p">:</span> <span class="s">&quot;848&quot;</span><span class="p">,</span>
+         <span class="n">name</span><span class="p">:</span> <span class="s">&quot;John Doe&quot;</span>
+      <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 </div>
-<div class="section" id="titles">
-<span id="section-title"></span><h2><code class="docutils literal"><span class="pre">/titles</span></code><a class="headerlink" href="#titles" title="Permalink to this headline">¶</a></h2>
-<p><em>Coming soon...</em></p>
+<p>The <code class="docutils literal"><span class="pre">deleted</span></code> key indicates if the filter has been deleted, 0 - active, 1 - deleted.</p>
+</div>
+<div class="section" id="post-filters">
+<h3><code class="docutils literal"><span class="pre">POST</span> <span class="pre">/filters</span></code><a class="headerlink" href="#post-filters" title="Permalink to this headline">¶</a></h3>
+<p>Create a new specialty classification filter in the system.
+Required fields:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">label</span></code> - the name of the specialty classification filter</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="post-filters-id">
+<h3><code class="docutils literal"><span class="pre">POST</span> <span class="pre">/filters/{id}</span></code><a class="headerlink" href="#post-filters-id" title="Permalink to this headline">¶</a></h3>
+<p>Change an existing specialty classification filter in the system.
+Required fields:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">label</span></code> - the name of the specialty classification filter</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="delete-filters-id">
+<h3><code class="docutils literal"><span class="pre">DELETE</span> <span class="pre">/filters/{id}</span></code><a class="headerlink" href="#delete-filters-id" title="Permalink to this headline">¶</a></h3>
+<p>Remove an existing specialty classification filter from the system.</p>
+</div>
 </div>
 </div>
 
