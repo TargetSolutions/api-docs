@@ -21,6 +21,5 @@ Contents
 .. toctree::
    :maxdepth: 3
 
-   index
    authentication
    resources
