@@ -626,10 +626,10 @@ Remove an existing specialty classification filter from the system.
 
 .. _section-csn:
 
-``GET /crew_scheduler_notes/?date=YYYY-MM-DD``
+``GET /crew_scheduler_notes/{date}``
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Retrieve the Notes and Activities on a given date.
+Retrieve the Notes and Activities on a given date. Date format is YYYY-MM-DD
 
 Example response::
 
