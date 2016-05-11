@@ -622,3 +622,24 @@ Required fields:
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 Remove an existing specialty classification filter from the system.
+
+
+.. _section-csn:
+
+``GET /crew_scheduler_notes/?date=YYYY-MM-DD``
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieve the Notes and Activities on a given date.
+
+Example response::
+
+   [
+     {
+       "id": "333",
+       "date": "2016-05-11",
+       "notes": "<p>These are notes in HTML</p>",
+       "activities": "<p>Activity HTML</p>",
+       "last_modification": "1462971246",
+       "last_modifying_user": "1234"
+     }
+   ]       
