@@ -626,6 +626,9 @@ Remove an existing specialty classification filter from the system.
 
 .. _section-csn:
 
+/crew_scheduler_notes
+---------------------
+
 ``GET /crew_scheduler_notes/{date}``
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
