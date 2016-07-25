@@ -76,10 +76,10 @@ An example of returned schedule data looks like this::
       ],
 
       "prev": {
-         "href": "http://api.crewsense.com/v1/schedule?start=2015-03-08%2008:00:00&end=2015-03-15%2008:00:00"
+         "href": "https://api.crewsense.com/v1/schedule?start=2015-03-08%2008:00:00&end=2015-03-15%2008:00:00"
       },
       "next": {
-         "href": "http://api.crewsense.com/v1/schedule?start=2015-03-22%2008:00:00&end=2015-03-22%2008:00:00"
+         "href": "https://api.crewsense.com/v1/schedule?start=2015-03-22%2008:00:00&end=2015-03-22%2008:00:00"
       }
    }
 
@@ -104,7 +104,7 @@ This array contains the assignments of the day. An assignment looks like this::
 
    {
       "id": 1234,
-      "href": "http://api.crewsense.com/v1/assignments/1234",
+      "href": "https://api.crewsense.com/v1/assignments/1234",
       "date": "2015-03-15",
       "start": "2015-03-15 08:00:00",
       "end": "2015-03-16 08:00:00",
@@ -146,31 +146,31 @@ like this::
 
    {
       "id": 456789,
-      "href": "http://api.crewsense.com/v1/shifts/456789",
+      "href": "https://api.crewsense.com/v1/shifts/456789",
       "start": "2015-03-15 08:00:00",
       "end": "2015-03-16 08:00:00",
       "hold_over": 0,
       "recurring": true,
       "user": {
          "id": 848,
-         "href": "http://api.crewsense.com/v1/users/848",
+         "href": "https://api.crewsense.com/v1/users/848",
          "name": "John Doe"
       },
       "admin": {
          "id": 138,
-         "href": "http://api.crewsense.com/v1/users/138",
+         "href": "https://api.crewsense.com/v1/users/138",
          "name": "Joe Boss"
       },
       "work_type": {
          "id": 33,
-         "href": "http://api.crewsense.com/v1/work_types/33",
+         "href": "https://api.crewsense.com/v1/work_types/33",
          "name": "Regular Time",
          "work_code": "REG001"
       },
       "labels": [
          {
             "id": 12,
-            "href": "http://api.crewsense.com/v1/labels/12",
+            "href": "https://api.crewsense.com/v1/labels/12",
             "label": "ENG"
          }
       ]
@@ -218,22 +218,22 @@ day. The general structure of one object in the array::
 
    {
       "id": 623492,
-      "href": "http://api.crewsense.com/v1/time_off/623492",
+      "href": "https://api.crewsense.com/v1/time_off/623492",
       "start": "2015-03-15 08:00:00",
       "end": "2015-03-16 08:00:00",
       "user": {
          "id": 848,
-         "href": "http://api.crewsense.com/v1/users/848",
+         "href": "https://api.crewsense.com/v1/users/848",
          "name": "John Doe"
       },
       "admin": {
          "id": 138,
-         "href": "http://api.crewsense.com/v1/users/138",
+         "href": "https://api.crewsense.com/v1/users/138",
          "name": "Joe Boss"
       },
       "time_off_type": {
          "id": 45,
-         "href": "http://api.crewsense.com/v1/time_off_types/45",
+         "href": "https://api.crewsense.com/v1/time_off_types/45",
          "name": "Sick Leave [SL]"
       }
    }
@@ -268,7 +268,7 @@ will not be included, they are under ``day.assignment.shifts``. A ``callback`` o
 
    {
       "id": 64012,
-      "href": "http://api.crewsense.com/v1/callbacks/64012",
+      "href": "https://api.crewsense.com/v1/callbacks/64012",
       "start": "2015-03-15 08:00:00",
       "end": "2015-03-16 08:00:00",
       "positions_to_fill": 1,
@@ -277,7 +277,7 @@ will not be included, they are under ``day.assignment.shifts``. A ``callback`` o
             "id": 2165743,
             "user": {
                "id": 848,
-               "href": "http://api.crewsense.com/v1/users/848",
+               "href": "https://api.crewsense.com/v1/users/848",
                "name": "John Doe"
             },
             "start": "2015-03-15 08:00:00",
@@ -287,7 +287,7 @@ will not be included, they are under ``day.assignment.shifts``. A ``callback`` o
       ]
       "title": {
          "id": 112,
-         "href": "http://api.crewsense.com/v1/titles/112",
+         "href": "https://api.crewsense.com/v1/titles/112",
          "name": "Firefighter"
       }
    }
@@ -327,22 +327,22 @@ will not be included, they are under ``day.assignment.shifts``. A ``callback`` o
 
    {
       "id": 4355,
-      "href": "http://api.crewsense.com/v1/trades/4355",
+      "href": "https://api.crewsense.com/v1/trades/4355",
       "start": "2015-03-15 08:00:00",
       "end": "2015-03-16 08:00:00",
       "requesting_user": {
          "id": 848,
-         "href": "http://api.crewsense.com/v1/users/848",
+         "href": "https://api.crewsense.com/v1/users/848",
          "name": "John Doe"
       },
       "accepting_user": {
          "id": 138,
-         "href": "http://api.crewsense.com/v1/users/138",
+         "href": "https://api.crewsense.com/v1/users/138",
          "name": "Jack Smith"
       },
       "admin": {
          "id": 98,
-         "href": "http://api.crewsense.com/v1/users/98",
+         "href": "https://api.crewsense.com/v1/users/98",
          "name": "Steve Boss"
       }
    }
@@ -356,12 +356,12 @@ This array provides data about any miscellaneous hours added for the day, in the
 
    {
       "id": 47711,
-      "href": "http://api.crewsense.com/v1/misc/47711",
+      "href": "https://api.crewsense.com/v1/misc/47711",
       "date": "2015-03-16",
       "length": 4.5,
       "user": {
          "id": 848,
-         "href": "http://api.crewsense.com/v1/users/848",
+         "href": "https://api.crewsense.com/v1/users/848",
          "name": "John Doe"
       },
       "work_type": "Training"
@@ -385,7 +385,7 @@ Get all non-deleted time off types for the active company. Format::
          "secondary_color": "#FFFFFF",
          "force_include": true,
          "forward": false,
-         "href": "http://api.crewsense.com/v1/time_off_types/5"
+         "href": "https://api.crewsense.com/v1/time_off_types/5"
       }
       {
          "id": "6",
@@ -397,7 +397,7 @@ Get all non-deleted time off types for the active company. Format::
          "secondary_color": "#FFFFFF",
          "force_include": false,
          "forward": true,
-         "href": "http://api.crewsense.com/v1/time_off_types/6"
+         "href": "https://api.crewsense.com/v1/time_off_types/6"
       }
    ]
 
