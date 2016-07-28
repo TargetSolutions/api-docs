@@ -21,7 +21,7 @@ creation date etc., where the timezone may be important (due to daylight savings
 ``/schedule``
 ----------------
 
-The schedule consists of *shifts*, *time offs*, *callbacks*, *trades* and *misc. hours*.
+The schedule consists of *shifts*, *time offs*, *callbacks*, *trades*, *notes*, *activities* and *misc. hours*.
 They are wrapped by a top-level object containing metadata about the requested schedule (start date, end date, links for the next and previous period).
 
 This endpoint has two required parameters:
@@ -109,34 +109,34 @@ This array contains the assignments of the day. An assignment looks like this::
       "start": "2015-03-15 08:00:00",
       "end": "2015-03-16 08:00:00",
       "name": "Station 1",
-      "positions_to_fill": 3,
+      "minimum_staffing": 3,
       "shifts": [
          ... see next section ...
       ]
    }
 
-+-----------------------+---------------------------+--------------------+
-| Field                 | Description               | Type               |
-+=======================+===========================+====================+
-| ``id``                | Unique identifier of the  | integer            |
-|                       | assignment                |                    |
-+-----------------------+---------------------------+--------------------+
-| ``href``              | Link to full object       | string (URL)       |
-+-----------------------+---------------------------+--------------------+
-| ``date``              | The day the assignment    | date               |
-|                       | starts on                 |                    |
-+-----------------------+---------------------------+--------------------+
-| ``start``             | Start date of assignment  | datetime           |
-+-----------------------+---------------------------+--------------------+
-| ``end``               | End date of assignment    | datetime           |
-+-----------------------+---------------------------+--------------------+
-| ``name``              | Title of assignment       | string             |
-+-----------------------+---------------------------+--------------------+
-| ``positions_to_fill`` | Employees needed          | integer            |
-+-----------------------+---------------------------+--------------------+
-| ``shifts``            | Employees working the     | array              |
-|                       | assignment                |                    |
-+-----------------------+---------------------------+--------------------+
++----------------------+--------------------------+--------------+
+| Field                | Description              | Type         |
++======================+==========================+==============+
+| ``id``               | Unique identifier of the | integer      |
+|                      | assignment               |              |
++----------------------+--------------------------+--------------+
+| ``href``             | Link to full object      | string (URL) |
++----------------------+--------------------------+--------------+
+| ``date``             | The day the assignment   | date         |
+|                      | starts on                |              |
++----------------------+--------------------------+--------------+
+| ``start``            | Start date of assignment | datetime     |
++----------------------+--------------------------+--------------+
+| ``end``              | End date of assignment   | datetime     |
++----------------------+--------------------------+--------------+
+| ``name``             | Title of assignment      | string       |
++----------------------+--------------------------+--------------+
+| ``minimum_staffing`` | Employees needed         | integer      |
++----------------------+--------------------------+--------------+
+| ``shifts``           | Employees working the    | array        |
+|                      | assignment               |              |
++----------------------+--------------------------+--------------+
 
 ``day.assignment.shifts``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -156,7 +156,7 @@ like this::
          "href": "https://api.crewsense.com/v1/users/848",
          "name": "John Doe"
       },
-      "admin": {
+      "scheduled_by": {
          "id": 138,
          "href": "https://api.crewsense.com/v1/users/138",
          "name": "Joe Boss"
@@ -176,35 +176,35 @@ like this::
       ]
    }
 
-+-----------------------+---------------------------+--------------------+
-| Field                 | Description               | Type               |
-+=======================+===========================+====================+
-| ``id``                | Unique identifier of the  | integer            |
-|                       | work shift                |                    |
-+-----------------------+---------------------------+--------------------+
-| ``href``              | Link to full object       | string (URL)       |
-+-----------------------+---------------------------+--------------------+
-| ``start``             | Start date of shift       | datetime           |
-+-----------------------+---------------------------+--------------------+
-| ``end``               | End date of shift         | datetime           |
-+-----------------------+---------------------------+--------------------+
-| ``hold_over``         | Additional OT hours       | datetime           |
-+-----------------------+---------------------------+--------------------+
-| ``recurring``         | Is it a regularly         | boolean            |
-|                       | occurring shift?          |                    |
-+-----------------------+---------------------------+--------------------+
-| ``user``              | Employee working the      |See                 |
-|                       | shift                     |:ref:`section-users`|
-+-----------------------+---------------------------+--------------------+
-| ``admin``             | Admin who assigned the    |See                 |
-|                       | shift                     |:ref:`section-users`|
-+-----------------------+---------------------------+--------------------+
-| ``work_type``         | Type of work              |See                 |
-|                       | shift                     |:ref:`section-wt`   |
-+-----------------------+---------------------------+--------------------+
-| ``labels``            | Applied Crew Scheduler    |array; see          |
-|                       | labels                    |:ref:`section-label`|
-+-----------------------+---------------------------+--------------------+
++------------------+--------------------------+----------------------+
+| Field            | Description              | Type                 |
++==================+==========================+======================+
+| ``id``           | Unique identifier of the | integer              |
+|                  | work shift               |                      |
++------------------+--------------------------+----------------------+
+| ``href``         | Link to full object      | string (URL)         |
++------------------+--------------------------+----------------------+
+| ``start``        | Start date of shift      | datetime             |
++------------------+--------------------------+----------------------+
+| ``end``          | End date of shift        | datetime             |
++------------------+--------------------------+----------------------+
+| ``hold_over``    | Additional OT hours      | datetime             |
++------------------+--------------------------+----------------------+
+| ``recurring``    | Is it a regularly        | boolean              |
+|                  | occurring shift?         |                      |
++------------------+--------------------------+----------------------+
+| ``user``         | Employee working the     | See                  |
+|                  | shift                    | :ref:`section-users` |
++------------------+--------------------------+----------------------+
+| ``scheduled_by`` | Admin who assigned the   | See                  |
+|                  | shift                    | :ref:`section-users` |
++------------------+--------------------------+----------------------+
+| ``work_type``    | Type of work             | See                  |
+|                  | shift                    | :ref:`section-wt`    |
++------------------+--------------------------+----------------------+
+| ``labels``       | Applied Crew Scheduler   | array; see           |
+|                  | labels                   | :ref:`section-label` |
++------------------+--------------------------+----------------------+
 
 You will notice that some of the included objects have ``href`` properties. This is because we are only returning a sensible 
 subset of the available data about these objects. If you make a ``GET`` request to the provided URL, you can retrieve all of 
@@ -271,7 +271,7 @@ will not be included, they are under ``day.assignment.shifts``. A ``callback`` o
       "href": "https://api.crewsense.com/v1/callbacks/64012",
       "start": "2015-03-15 08:00:00",
       "end": "2015-03-16 08:00:00",
-      "positions_to_fill": 1,
+      "minimum_staffing": 1,
       "records": [
          {
             "id": 2165743,
@@ -292,28 +292,28 @@ will not be included, they are under ``day.assignment.shifts``. A ``callback`` o
       }
    }
 
-+-----------------------+---------------------------+--------------------+
-| Field                 | Description               | Type               |
-+=======================+===========================+====================+
-| ``id``                | Unique identifier of the  | integer            |
-|                       | time off                  |                    |
-+-----------------------+---------------------------+--------------------+
-| ``href``              | Link to full object       | string (URL)       |
-+-----------------------+---------------------------+--------------------+
-| ``start``             | Start date of the         | datetime           |
-|                       | callback shift            |                    |
-+-----------------------+---------------------------+--------------------+
-| ``end``               | End date of the           | datetime           |
-|                       | callback shift            |                    |
-+-----------------------+---------------------------+--------------------+
-| ``positions_to_fill`` | Employees needed          | integer            |
-+-----------------------+---------------------------+--------------------+
-| ``records``           | Accepting employees       |array; see          |
-|                       |                           |:ref:`section-cbr`  | 
-+-----------------------+---------------------------+--------------------+
-| ``title``             | Employee type needed      |See                 |
-|                       | time off                  |:ref:`section-title`|
-+-----------------------+---------------------------+--------------------+
++----------------------+--------------------------+----------------------+
+| Field                | Description              | Type                 |
++======================+==========================+======================+
+| ``id``               | Unique identifier of the | integer              |
+|                      | time off                 |                      |
++----------------------+--------------------------+----------------------+
+| ``href``             | Link to full object      | string (URL)         |
++----------------------+--------------------------+----------------------+
+| ``start``            | Start date of the        | datetime             |
+|                      | callback shift           |                      |
++----------------------+--------------------------+----------------------+
+| ``end``              | End date of the          | datetime             |
+|                      | callback shift           |                      |
++----------------------+--------------------------+----------------------+
+| ``minimum_staffing`` | Employees needed         | integer              |
++----------------------+--------------------------+----------------------+
+| ``records``          | Accepting employees      | array; see           |
+|                      |                          | :ref:`section-cbr`   |
++----------------------+--------------------------+----------------------+
+| ``title``            | Employee type needed     | See                  |
+|                      | time off                 | :ref:`section-title` |
++----------------------+--------------------------+----------------------+
 
 .. note::
 
@@ -366,6 +366,14 @@ This array provides data about any miscellaneous hours added for the day, in the
       },
       "work_type": "Training"
    }
+
+``day.notes``, ``day.activities``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This contains the Crew Scheduler notes for the day, with all the HTML from the Rich Text Editor::
+
+   "notes": "<p>These are your notes for the day.<br />Notice the HTML</p>"
+   "activities": "<h1>TRAINING</h1><p>These are your activities.<br />In HTML too!</p>"
 
 .. _section-tot:
 
