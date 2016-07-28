@@ -632,25 +632,101 @@ Required fields:
 Remove an existing specialty classification filter from the system.
 
 
-.. _section-csn:
+.. _section-users:
 
-/crew_scheduler_notes
----------------------
+``/users``
+----------
 
-``GET /crew_scheduler_notes/{date}``
-^^^^^^^^^^^^^^^^^^^^^^^^
+``GET /users``
+^^^^^^^^^^^^^^
 
-Retrieve the Notes and Activities on a given date. Date format is YYYY-MM-DD
+List all non-deleted, active users of the company.
 
-Example response::
+::
 
    [
-     {
-       "id": "333",
-       "date": "2016-05-11",
-       "notes": "<p>These are notes in HTML</p>",
-       "activities": "<p>Activity HTML</p>",
-       "last_modification": "1462971246",
-       "last_modifying_user": "1234"
-     }
-   ]       
+      {
+         "user_id": 1234,
+         "employee_id": "DEV123",
+         "username": "olinagy",
+         "first_name": "Oliver",
+         "last_name": "Nagy",
+         "full_name": "Oliver Nagy",
+         "role": "Deputy",
+         "emails": [
+            "oli.nagy@example.com",
+            "oli.nagy@otherexample.net"
+         ],
+         "phone_numbers": [
+            "5555555555",
+            "1231231232"
+         ]
+      },
+      ...
+   ]
+
+``GET /users/:user_id/timeoff/accrual/bank``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Return the current time off bank of the user with the ``user_id``.  
+Example: ``GET /users/1234/timeoff/accrual/bank``::
+
+   [
+      {
+         "hours": 1001,
+         "time_off_type": {
+            "id": 5,
+            "name": "Sick"
+         }
+      },
+      {
+         "hours": -125.024,
+         "time_off_type": {
+            "id": 6,
+            "name": "Vacation"
+         }
+      },
+      {
+         "hours": 29.2125,
+         "time_off_type": {
+            "id": 7,
+            "name": "Earned Time"
+         }
+      },
+
+      ...
+   ]
+
+``GET /users/:user_id/timeoff/accrual/profile``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Return the accrual type for each time off type based on the employee's accrual profile.
+
+::
+
+   [
+      {
+            "time_off_type": {
+               "id": 5,
+               "name": "Sick"
+         },
+         "accrual_type": "Accrues 10 hours every 28 days"
+      },
+      {
+         "time_off_type": {
+            "id": 6,
+            "name": "Vacation"
+         },
+         "accrual_type": "Accrues one hour every 10 hours worked (max. 12 hours)"
+      },
+      {
+         "time_off_type": {
+            "id": 7,
+            "name": "Earned Time"
+         },
+         "accrual_type": "No automatic accrual"
+      },
+
+      ...
+
+   ]
