@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Resources &mdash; Callback Staffing API 1.0 documentation</title>
+  <title>Resources &mdash; CrewSense API 1.0 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="Callback Staffing API 1.0 documentation" href="index.html"/>
+    <link rel="top" title="CrewSense API 1.0 documentation" href="index.html"/>
         <link rel="prev" title="Authentication" href="authentication.html"/> 
 
   
@@ -48,7 +48,7 @@
         
 
         
-          <a href="index.html" class="icon icon-home"> Callback Staffing API
+          <a href="index.html" class="icon icon-home"> CrewSense API
         
 
         
@@ -148,7 +148,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">Callback Staffing API</a>
+        <a href="index.html">CrewSense API</a>
       </nav>
 
 
@@ -257,10 +257,10 @@ you need the data to</td>
    <span class="p">],</span>
 
    <span class="s">&quot;prev&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/schedule?start=2015-03-08%2008:00:00&amp;end=2015-03-15%2008:00:00&quot;</span>
+      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://crewsense.com/api/v1/schedule?start=2015-03-08%2008:00:00&amp;end=2015-03-15%2008:00:00&quot;</span>
    <span class="p">},</span>
    <span class="s">&quot;next&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/schedule?start=2015-03-22%2008:00:00&amp;end=2015-03-22%2008:00:00&quot;</span>
+      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://crewsense.com/api/v1/schedule?start=2015-03-22%2008:00:00&amp;end=2015-03-22%2008:00:00&quot;</span>
    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -282,7 +282,7 @@ key, and arrays of objects occurring that day. For the following sections, we re
 <p>This array contains the assignments of the day. An assignment looks like this:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
    <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1234</span><span class="p">,</span>
-   <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/assignments/1234&quot;</span><span class="p">,</span>
+   <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://crewsense.com/api/v1/assignments/1234&quot;</span><span class="p">,</span>
    <span class="s">&quot;date&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-15&quot;</span><span class="p">,</span>
    <span class="s">&quot;start&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-15 08:00:00&quot;</span><span class="p">,</span>
    <span class="s">&quot;end&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-16 08:00:00&quot;</span><span class="p">,</span>
@@ -351,31 +351,31 @@ assignment</td>
 like this:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
    <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">456789</span><span class="p">,</span>
-   <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/shifts/456789&quot;</span><span class="p">,</span>
+   <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://crewsense.com/api/v1/shifts/456789&quot;</span><span class="p">,</span>
    <span class="s">&quot;start&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-15 08:00:00&quot;</span><span class="p">,</span>
    <span class="s">&quot;end&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-16 08:00:00&quot;</span><span class="p">,</span>
    <span class="s">&quot;hold_over&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
    <span class="s">&quot;recurring&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
    <span class="s">&quot;user&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">848</span><span class="p">,</span>
-      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/users/848&quot;</span><span class="p">,</span>
+      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://crewsense.com/api/v1/users/848&quot;</span><span class="p">,</span>
       <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;John Doe&quot;</span>
    <span class="p">},</span>
    <span class="s">&quot;admin&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">138</span><span class="p">,</span>
-      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/users/138&quot;</span><span class="p">,</span>
+      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://crewsense.com/api/v1/users/138&quot;</span><span class="p">,</span>
       <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;Joe Boss&quot;</span>
    <span class="p">},</span>
    <span class="s">&quot;work_type&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">33</span><span class="p">,</span>
-      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/work_types/33&quot;</span><span class="p">,</span>
+      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://crewsense.com/api/v1/work_types/33&quot;</span><span class="p">,</span>
       <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;Regular Time&quot;</span><span class="p">,</span>
       <span class="s">&quot;work_code&quot;</span><span class="p">:</span> <span class="s">&quot;REG001&quot;</span>
    <span class="p">},</span>
    <span class="s">&quot;labels&quot;</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
-         <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/labels/12&quot;</span><span class="p">,</span>
+         <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://crewsense.com/api/v1/labels/12&quot;</span><span class="p">,</span>
          <span class="s">&quot;label&quot;</span><span class="p">:</span> <span class="s">&quot;ENG&quot;</span>
       <span class="p">}</span>
    <span class="p">]</span>
@@ -457,22 +457,22 @@ the available information about them.</p>
 day. The general structure of one object in the array:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
    <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">623492</span><span class="p">,</span>
-   <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/time_off/623492&quot;</span><span class="p">,</span>
+   <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://crewsense.com/api/v1/time_off/623492&quot;</span><span class="p">,</span>
    <span class="s">&quot;start&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-15 08:00:00&quot;</span><span class="p">,</span>
    <span class="s">&quot;end&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-16 08:00:00&quot;</span><span class="p">,</span>
    <span class="s">&quot;user&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">848</span><span class="p">,</span>
-      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/users/848&quot;</span><span class="p">,</span>
+      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://crewsense.com/api/v1/users/848&quot;</span><span class="p">,</span>
       <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;John Doe&quot;</span>
    <span class="p">},</span>
    <span class="s">&quot;admin&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">138</span><span class="p">,</span>
-      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/users/138&quot;</span><span class="p">,</span>
+      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://crewsense.com/api/v1/users/138&quot;</span><span class="p">,</span>
       <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;Joe Boss&quot;</span>
    <span class="p">},</span>
    <span class="s">&quot;time_off_type&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span>
-      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/time_off_types/45&quot;</span><span class="p">,</span>
+      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://crewsense.com/api/v1/time_off_types/45&quot;</span><span class="p">,</span>
       <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;Sick Leave [SL]&quot;</span>
    <span class="p">}</span>
 <span class="p">}</span>
@@ -534,7 +534,7 @@ shift</td>
 will not be included, they are under <code class="docutils literal"><span class="pre">day.assignment.shifts</span></code>. A <code class="docutils literal"><span class="pre">callback</span></code> object is structured like this:</p>
 <div class="highlight-python"><div class="highlight"><pre>{
    &quot;id&quot;: 64012,
-   &quot;href&quot;: &quot;https://callbackstaffing.com/api/v1/callbacks/64012&quot;,
+   &quot;href&quot;: &quot;https://crewsense.com/api/v1/callbacks/64012&quot;,
    &quot;start&quot;: &quot;2015-03-15 08:00:00&quot;,
    &quot;end&quot;: &quot;2015-03-16 08:00:00&quot;,
    &quot;positions_to_fill&quot;: 1,
@@ -543,7 +543,7 @@ will not be included, they are under <code class="docutils literal"><span class=
          &quot;id&quot;: 2165743,
          &quot;user&quot;: {
             &quot;id&quot;: 848,
-            &quot;href&quot;: &quot;https://callbackstaffing.com/api/v1/users/848&quot;,
+            &quot;href&quot;: &quot;https://crewsense.com/api/v1/users/848&quot;,
             &quot;name&quot;: &quot;John Doe&quot;
          },
          &quot;start&quot;: &quot;2015-03-15 08:00:00&quot;,
@@ -553,7 +553,7 @@ will not be included, they are under <code class="docutils literal"><span class=
    ]
    &quot;title&quot;: {
       &quot;id&quot;: 112,
-      &quot;href&quot;: &quot;https://callbackstaffing.com/api/v1/titles/112&quot;,
+      &quot;href&quot;: &quot;https://crewsense.com/api/v1/titles/112&quot;,
       &quot;name&quot;: &quot;Firefighter&quot;
    }
 }
@@ -619,22 +619,22 @@ using the <code class="docutils literal"><span class="pre">href</span></code> li
 <p><code class="docutils literal"><span class="pre">trades</span></code> contains all accepted and finalized shift trades for the day. A trade object in the array looks like this:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
    <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">4355</span><span class="p">,</span>
-   <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/trades/4355&quot;</span><span class="p">,</span>
+   <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://crewsense.com/api/v1/trades/4355&quot;</span><span class="p">,</span>
    <span class="s">&quot;start&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-15 08:00:00&quot;</span><span class="p">,</span>
    <span class="s">&quot;end&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-16 08:00:00&quot;</span><span class="p">,</span>
    <span class="s">&quot;requesting_user&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">848</span><span class="p">,</span>
-      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/users/848&quot;</span><span class="p">,</span>
+      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://crewsense.com/api/v1/users/848&quot;</span><span class="p">,</span>
       <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;John Doe&quot;</span>
    <span class="p">},</span>
    <span class="s">&quot;accepting_user&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">138</span><span class="p">,</span>
-      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/users/138&quot;</span><span class="p">,</span>
+      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://crewsense.com/api/v1/users/138&quot;</span><span class="p">,</span>
       <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;Jack Smith&quot;</span>
    <span class="p">},</span>
    <span class="s">&quot;admin&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">98</span><span class="p">,</span>
-      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/users/98&quot;</span><span class="p">,</span>
+      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://crewsense.com/api/v1/users/98&quot;</span><span class="p">,</span>
       <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;Steve Boss&quot;</span>
    <span class="p">}</span>
 <span class="p">}</span>
@@ -647,12 +647,12 @@ using the <code class="docutils literal"><span class="pre">href</span></code> li
 <p>This array provides data about any miscellaneous hours added for the day, in the following format:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
    <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">47711</span><span class="p">,</span>
-   <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/misc/47711&quot;</span><span class="p">,</span>
+   <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://crewsense.com/api/v1/misc/47711&quot;</span><span class="p">,</span>
    <span class="s">&quot;date&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-16&quot;</span><span class="p">,</span>
    <span class="s">&quot;length&quot;</span><span class="p">:</span> <span class="mf">4.5</span><span class="p">,</span>
    <span class="s">&quot;user&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">848</span><span class="p">,</span>
-      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://callbackstaffing.com/api/v1/users/848&quot;</span><span class="p">,</span>
+      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;https://crewsense.com/api/v1/users/848&quot;</span><span class="p">,</span>
       <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;John Doe&quot;</span>
    <span class="p">},</span>
    <span class="s">&quot;work_type&quot;</span><span class="p">:</span> <span class="s">&quot;Training&quot;</span>
@@ -675,7 +675,7 @@ using the <code class="docutils literal"><span class="pre">href</span></code> li
       &quot;secondary_color&quot;: &quot;#FFFFFF&quot;,
       &quot;force_include&quot;: true,
       &quot;forward&quot;: false,
-      &quot;href&quot;: &quot;https://callbackstaffing.com/api/v1/time_off_types/5&quot;
+      &quot;href&quot;: &quot;https://crewsense.com/api/v1/time_off_types/5&quot;
    }
    {
       &quot;id&quot;: &quot;6&quot;,
@@ -687,7 +687,7 @@ using the <code class="docutils literal"><span class="pre">href</span></code> li
       &quot;secondary_color&quot;: &quot;#FFFFFF&quot;,
       &quot;force_include&quot;: false,
       &quot;forward&quot;: true,
-      &quot;href&quot;: &quot;https://callbackstaffing.com/api/v1/time_off_types/6&quot;
+      &quot;href&quot;: &quot;https://crewsense.com/api/v1/time_off_types/6&quot;
    }
 ]
 </pre></div>

@@ -44,8 +44,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Callback Staffing API'
-copyright = u'2015, Oliver Nagy'
+project = u'CrewSense API'
+copyright = u'2016, Oliver Nagy'
 author = u'Oliver Nagy'
 
 # The version info for the project you're documenting, acts as replacement for

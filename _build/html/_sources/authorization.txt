@@ -5,7 +5,7 @@ Receiving an access token
 -------------------------
 
 You use access tokens to authorize any requests made towards our API. To request an access token,
-issue a POST request to ``https://callbackstaffing.com/api/oauth/access_token`` like so:
+issue a POST request to ``https://crewsense.com/api/oauth/access_token`` like so:
 
 curl
 ^^^^
