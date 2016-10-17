@@ -786,3 +786,40 @@ Return the accrual type for each time off type based on the employee's accrual p
       ...
 
    ]
+
+
+.. _section-logs:
+
+``/logs``
+---------
+
+Whenever any change is made in the system, we add a system log entry. 
+The endpoints below allow access to these system logs.
+
+``GET /logs(/:after)``
+^^^^^^^^^^^^^^
+
+List the latest log entries. We return 50 log entries per page.
+The ``prev`` and ``next`` links provide pagination through all of the system logs.
+
+::
+
+   {
+      "data": [
+         {
+            "log_id": 329473,
+            "created": "2016-10-13T16:35:52+0200",
+            "event_description": "CallBack Staffing logged in.",
+            "user": {
+                "id": 1,
+                "name": "CallBack Staffing",
+                "href": "http://api.crewsense.com/v1/users/1"
+            }
+         },
+         ...
+      ],
+      "pagination": {
+         "prev": "http://api.crewsense.com/v1/logs/150",
+         "next": "http://api.crewsense.com/v1/logs/250"
+      }
+   }
