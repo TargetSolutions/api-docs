@@ -10,13 +10,13 @@ Receiving an access token
 -------------------------
 
 You use access tokens to authorize any requests made towards our API. To request an access token,
-issue a POST request to ``https://callbackstaffing.com/api/oauth/access_token`` like so:
+issue a POST request to ``https://crewsense.com/api/oauth/access_token`` like so:
 
 curl
 ^^^^
 ::
 
-   curl -v https://callbackstaffing.com/api/oauth/access_token \
+   curl -v https://crewsense.com/api/oauth/access_token \
         -d "client_id=YOUR_CLIENT_ID" \
         -d "client_secret=YOUR_SECRET_KEY" \
         -d "grant_type=client_credentials"
@@ -59,5 +59,5 @@ curl example
 ^^^^^^^^^^^^
 ::
 
-   curl -v https://callbackstaffing.com/api/v1/schedule \
+   curl -v https://crewsense.com/api/v1/schedule \
         -H "Authorization: Bearer DZs3IeaMP5uEAc2I19kJYl8Tbvsmgq9GaPQPaMjN"
