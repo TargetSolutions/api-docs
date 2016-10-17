@@ -665,6 +665,62 @@ List all non-deleted, active users of the company.
       ...
    ]
 
+``GET /users/:id``
+^^^^^^^^^^^^^^
+
+Get all information about the user identified by ``id``.
+
+::
+
+   {
+      "user_id": 1234,
+      "employee_id": "DEV123",
+      "username": "olinagy",
+      "first_name": "Oliver",
+      "last_name": "Nagy",
+      "full_name": "Oliver Nagy",
+      "role": "Deputy",
+      "emails": [
+         "oli.nagy@example.com",
+         "oli.nagy@otherexample.net"
+      ],
+      "phone_numbers": [
+         "5555555555",
+         "1231231232"
+      ]
+   }
+
+``PUT /users``
+^^^^^^^^^^^^^^
+
+Create a new user. Send JSON data in the request body.
+
+::
+
+      {
+         "employee_id": "DEV123",
+         "username": "olinagy",
+         "first_name": "Oliver",
+         "last_name": "Nagy",
+         "full_name": "Oliver Nagy",
+         "role": "Deputy",
+         "phone": "5555555555",
+         "mail": "info@example.com"
+      }
+
+``PATCH /users/:id``
+^^^^^^^^^^^^^^
+
+Update a user with the ``user_id``. Send JSON data in the request body.
+You only need to send data that you want to update.
+
+::
+
+      {
+         "first_name": "Oliver",
+         "last_name": "Nagy"
+      }
+
 ``GET /users/:user_id/timeoff/accrual/bank``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -706,9 +762,9 @@ Return the accrual type for each time off type based on the employee's accrual p
 
    [
       {
-            "time_off_type": {
-               "id": 5,
-               "name": "Sick"
+         "time_off_type": {
+            "id": 5,
+            "name": "Sick"
          },
          "accrual_type": "Accrues 10 hours every 28 days"
       },
