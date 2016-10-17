@@ -813,13 +813,54 @@ The ``prev`` and ``next`` links provide pagination through all of the system log
             "user": {
                 "id": 1,
                 "name": "CallBack Staffing",
-                "href": "http://api.crewsense.com/v1/users/1"
+                "href": "https://api.crewsense.com/v1/users/1"
             }
          },
          ...
       ],
       "pagination": {
-         "prev": "http://api.crewsense.com/v1/logs/150",
-         "next": "http://api.crewsense.com/v1/logs/250"
+         "prev": "https://api.crewsense.com/v1/logs/150",
+         "next": "https://api.crewsense.com/v1/logs/250"
       }
    }
+
+
+.. _section-announcements:
+``/announcements``
+------------------
+
+Manage system announcements of your company.
+
+``GET /announcements``
+^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieve the latest, non-deleted announcements.
+Example response::
+
+   {
+    "data": [
+        {
+            "id": 238,
+            "company_id": 8,
+            "title": "Test",
+            "body": "<p>This is a great HTML <strong>message!</strong></p>",
+            "first_name": "Boss",
+            "last_name": "Doe",
+            "user": {
+                "id": 848,
+                "name": "Boss Doe",
+                "href": "https://api.crewsense.com/v1/users/848"
+            }
+        },
+        ...
+    ],
+    "pagination": {
+        "prev": null,
+        "next": null
+    }
+}
+
+``DELETE /announcements/:id``
+^^^^^^^^^^^^^^^^^^^^^^
+
+Delete the announcement by the id ``id``.
