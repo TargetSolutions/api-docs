@@ -6,6 +6,13 @@ The authentication process consists of requesting an access token with your orga
 *API key* and *API secret*, and using this access token in the ``Authentication`` HTTP header 
 of any subsequent requests.
 
+Getting your API credentials
+----------------------------
+
+To generate API key/secret pairs, go to the `System Settings <https://crewsense.com/Application/ControlPanel/Options/>`_ page, click "Integrations", and click "Generate new API credentials". The credentials will be listed in the table on that page.
+
+If you no longer use the API credentials or you suspect they have been compromised, please delete them, and generate new ones instead, if needed.
+
 Receiving an access token
 -------------------------
 
