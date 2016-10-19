@@ -928,6 +928,25 @@ Example response::
       }
    ]
 
+``GET /qualifiers/:id``
+^^^^^^^^^^^^^^^^^^^
+
+Retrieve all information about a qualifier.
+Example response::
+
+   {
+      "id": 8,
+      "name": "Firefighter",
+      "shortcode": "FF-01",
+      "title_id": 23,
+      "created_by": 848,
+      "created_on": "2015-11-18 05:19:27",
+      "modified_by": null,
+      "modified_on": null,
+      "deleted_at": null,
+      "deleted_by": null
+   }
+
 
 ``POST /qualifiers``
 ^^^^^^^^^^^^^^^^^^^
@@ -947,3 +966,30 @@ Example response::
    {
       "inserted": 1
    }
+
+
+``DELETE /qualifiers/:id``
+^^^^^^^^^^^^^^^^^^^
+
+Delete a qualifier. The qualifier will be soft-deleted, which means we can manually
+restore it if you think you've made a mistake deleting it.
+
+``GET /qualifiers/:id/users``
+^^^^^^^^^^^^^^^^^^^
+
+Retrieve all associated users of a qualifier.
+Example response::
+
+   [
+      {
+         "id": 98,
+         "name": "Hass Brycen",
+         "ranking": 0
+      },
+      {
+         "id": 138,
+         "name": "Oliver Nagy",
+         "ranking": 0
+      },
+      ...
+   ]
