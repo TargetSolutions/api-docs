@@ -838,27 +838,55 @@ Retrieve the latest, non-deleted announcements.
 Example response::
 
    {
-    "data": [
-        {
-            "id": 238,
-            "company_id": 8,
-            "title": "Test",
-            "body": "<p>This is a great HTML <strong>message!</strong></p>",
-            "first_name": "Boss",
-            "last_name": "Doe",
-            "user": {
-                "id": 848,
-                "name": "Boss Doe",
-                "href": "https://api.crewsense.com/v1/users/848"
-            }
-        },
-        ...
-    ],
-    "pagination": {
-        "prev": null,
-        "next": null
-    }
-}
+      "data": [
+           {
+               "id": 238,
+               "company_id": 8,
+               "title": "Test",
+               "body": "<p>This is a great HTML <strong>message!</strong></p>",
+               "first_name": "Boss",
+               "last_name": "Doe",
+               "user": {
+                   "id": 848,
+                   "name": "Boss Doe",
+                   "href": "https://api.crewsense.com/v1/users/848"
+               }
+           },
+           ...
+       ],
+       "pagination": {
+           "prev": null,
+           "next": null
+       }
+   }
+
+``POST /announcements``
+^^^^^^^^^^^^^^^^^^^^^^
+
+Create a new company announcement.
+
++------------+---------------------------------------------------+
+| Parameters |                                                   |
++============+===================================================+
+| body       | The text of the announcement, in HTML. *Required* |
++------------+---------------------------------------------------+
+| title      | Announcement title                                |
++------------+---------------------------------------------------+
+
+
+``PUT /announcements/:id``
+^^^^^^^^^^^^^^^^^^^^^^
+
+Update a company announcement identified by ``:id``.
+
++------------+---------------------------------------------------+
+| Parameters |                                                   |
++============+===================================================+
+| body       | The text of the announcement, in HTML. *Required* |
++------------+---------------------------------------------------+
+| title      | Announcement title                                |
++------------+---------------------------------------------------+
+
 
 ``DELETE /announcements/:id``
 ^^^^^^^^^^^^^^^^^^^^^^
