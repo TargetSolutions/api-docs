@@ -18,8 +18,8 @@ creation date etc., where the timezone may be important (due to daylight savings
 
 .. rubric:: Endpoints
 
-``Schedule``
-----------------
+Schedule
+--------
 
 ``GET /schedule``
 ^^^^^^^^^^^^^^^^^
@@ -380,8 +380,8 @@ This contains the Crew Scheduler notes for the day, with all the HTML from the R
 
 .. _section-tot:
 
-``Time Off Types``
--------------------
+Time Off Types
+--------------
 
 ``GET /time_off_types``
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -452,8 +452,8 @@ Get all non-deleted time off types for the active company. Format::
 
 .. _section-label:
 
-``Labels``
------------
+Labels
+------
 
 Manage crew scheduler labels with these endpoints.
 
@@ -548,8 +548,8 @@ Remove an existing crew scheduler label from the system.
 
 .. _section-filter:
 
-``Filters``
-------------
+Filters
+-------
 
 Manage specialty classification filters
 
@@ -640,8 +640,8 @@ Remove an existing specialty classification filter from the system.
 
 .. _section-users:
 
-``Users``
-----------
+Users
+-----
 
 ``GET /users``
 ^^^^^^^^^^^^^^
@@ -796,8 +796,8 @@ Return the accrual type for each time off type based on the employee's accrual p
 
 .. _section-logs:
 
-``Logs``
----------
+Logs
+----
 
 Whenever any change is made in the system, we add a system log entry. 
 The endpoints below allow access to these system logs.
@@ -833,8 +833,8 @@ The ``prev`` and ``next`` links provide pagination through all of the system log
 
 .. _section-announcements:
 
-``Announcements``
-------------------
+Announcements
+-------------
 
 Manage system announcements of your company.
 
@@ -900,7 +900,50 @@ Update a company announcement identified by ``:id``.
 
 Delete the announcement by the id ``id``.
 
-
 .. _section-qualifiers:
-``/qualifiers``
-------------------
+
+Qualifiers
+----------
+
+``GET /qualifiers``
+^^^^^^^^^^^^^^^^^^^
+
+Retrieve all active qualifiers in your system.
+Example response::
+
+   [
+      {
+         "id": 7,
+         "name": "Captain",
+         "shortcode": "CPT",
+         "modified_by": null,
+         "modified_on": null
+      },
+      {
+         "id": 8,
+         "name": "Firefighter",
+         "shortcode": "FF",
+         "modified_by": null,
+         "modified_on": null
+      }
+   ]
+
+
+``POST /qualifiers``
+^^^^^^^^^^^^^^^^^^^
+
+Create a new qualifier.
+
++------------+------------------------------------------------------------------------+
+| Parameters                                                                          |
++============+========================================================================+
+| name       | Descriptive name of the qualifier                                      |
++------------+------------------------------------------------------------------------+
+| shortcode  | Shortened name of the qualifier, to be displayed on the Crew Scheduler |
++------------+------------------------------------------------------------------------+
+
+Example response::
+
+   {
+      "inserted": 1
+   }
