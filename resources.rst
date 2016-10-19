@@ -18,8 +18,11 @@ creation date etc., where the timezone may be important (due to daylight savings
 
 .. rubric:: Endpoints
 
-``/schedule``
+``Schedule``
 ----------------
+
+``GET /schedule``
+^^^^^^^^^^^^^^^^^
 
 The schedule consists of *shifts*, *time offs*, *callbacks*, *trades*, *notes*, *activities* and *misc. hours*.
 They are wrapped by a top-level object containing metadata about the requested schedule (start date, end date, links for the next and previous period).
@@ -377,8 +380,11 @@ This contains the Crew Scheduler notes for the day, with all the HTML from the R
 
 .. _section-tot:
 
-``/time_off_types``
+``Time Off Types``
 -------------------
+
+``GET /time_off_types``
+^^^^^^^^^^^^^^^^^^^^^^^
 
 Get all non-deleted time off types for the active company. Format::
 
@@ -446,7 +452,7 @@ Get all non-deleted time off types for the active company. Format::
 
 .. _section-label:
 
-``/labels``
+``Labels``
 -----------
 
 Manage crew scheduler labels with these endpoints.
@@ -542,7 +548,7 @@ Remove an existing crew scheduler label from the system.
 
 .. _section-filter:
 
-``/filters``
+``Filters``
 ------------
 
 Manage specialty classification filters
@@ -634,7 +640,7 @@ Remove an existing specialty classification filter from the system.
 
 .. _section-users:
 
-``/users``
+``Users``
 ----------
 
 ``GET /users``
@@ -790,7 +796,7 @@ Return the accrual type for each time off type based on the employee's accrual p
 
 .. _section-logs:
 
-``/logs``
+``Logs``
 ---------
 
 Whenever any change is made in the system, we add a system log entry. 
@@ -826,7 +832,8 @@ The ``prev`` and ``next`` links provide pagination through all of the system log
 
 
 .. _section-announcements:
-``/announcements``
+
+``Announcements``
 ------------------
 
 Manage system announcements of your company.
@@ -892,3 +899,8 @@ Update a company announcement identified by ``:id``.
 ^^^^^^^^^^^^^^^^^^^^^^
 
 Delete the announcement by the id ``id``.
+
+
+.. _section-qualifiers:
+``/qualifiers``
+------------------
