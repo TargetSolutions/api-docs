@@ -1,4 +1,5 @@
 # Callback Staffing API Docs 
+This is part of the CrewSense Scheduling application
 
 [![Documentation Status](https://readthedocs.org/projects/callback-staffing-api/badge/?version=latest)](https://readthedocs.org/projects/callback-staffing-api/?badge=latest)
 
